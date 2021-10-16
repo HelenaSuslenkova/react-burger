@@ -1,0 +1,28 @@
+.content {
+  width: 720px;
+  background-color: #1C1C21;
+  border-radius: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.header {
+  display: flex;
+  margin: 40px 40px 0 40px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon__close:hover {
+  cursor: pointer;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

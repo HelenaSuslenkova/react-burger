@@ -1,0 +1,9 @@
+.tab {
+  display: block;
+  text-decoration: none;
+}
+
+.tabs {
+  padding-top: 20px;
+  display: flex;
+}

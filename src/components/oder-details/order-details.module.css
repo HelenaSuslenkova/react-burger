@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.number{
+  margin-bottom: 32px;
+}
+
+.icon {
+  margin: 60px 0;
+}
+
+.status {
+  margin-bottom: 8px;
+}
+
+.comment {
+  margin-bottom: 120px;
+}
