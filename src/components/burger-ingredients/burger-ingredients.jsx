@@ -34,7 +34,7 @@ function BurgerIngredients({ groupedIngredients }) {
 }
 
 BurgerIngredients.propTypes = {
-  groupedIngredients: PropTypes.object
+  groupedIngredients: PropTypes.object,
 }
 
 export default BurgerIngredients;

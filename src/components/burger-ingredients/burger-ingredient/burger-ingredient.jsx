@@ -1,6 +1,5 @@
 import { useRef } from 'react';
-import PropTypes from 'prop-types';
-import burgerIngredientStyles from "./burger-ingredient.module.css";
+import burgerIngredientStyles from './burger-ingredient.module.css';
 import {
   Counter,
   CurrencyIcon,
@@ -8,14 +7,14 @@ import {
 import Modal from '../../modals/modal/modal';
 import IngredientDetails from '../../ingredient-details/ingredient-details';
 import useModalState from '../../../hooks/use-modal-state';
+import { burgerIngredientType } from '../../../utils/types';
 
 function BurgerIngredient({ ingredient }) {
   const modalTitle = "Детали ингридиента"
-  const { image, name, price, _id } = ingredient;
+  const { image, name, price } = ingredient;
   const burgerIngredientRef = useRef(null);
 
   const showModal = (e) => {
-    console.log(burgerIngredientRef);
     e.preventDefault();
   }
 
@@ -45,20 +44,7 @@ function BurgerIngredient({ ingredient }) {
 }
 
 BurgerIngredient.propTypes = {
-  ingredient: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    proteins: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    carbohydrates: PropTypes.number.isRequired,
-    calories: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    image_mobile: PropTypes.string.isRequired,
-    image_large: PropTypes.string.isRequired,
-    __v: PropTypes.number,
-  }).isRequired,
+  ingredient: burgerIngredientType,
 }
 
 export default BurgerIngredient;

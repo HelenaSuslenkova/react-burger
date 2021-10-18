@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Tab,
 } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -19,6 +20,12 @@ const Tabs = ({ types }) => {
       )}
     </nav>
   )
+}
+
+Tabs.propTypes = {
+  types: PropTypes.arrayOf(
+    PropTypes.string,
+  ),
 }
 
 export default Tabs;

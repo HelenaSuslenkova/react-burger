@@ -12,3 +12,8 @@ export const INGREDIENT_DETAILS_TITLES = {
   fat: 'Жиры,г',
   carbohydrates: 'Углеводы,г',
 }
+
+export const BULK_POSITIONS = {
+    top: "верх",
+    bottom: "низ",
+}

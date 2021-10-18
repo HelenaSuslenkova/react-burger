@@ -24,7 +24,7 @@ function App() {
       if (success) {
         setState({ data, loading: false });
       } else {
-        console.log(`success: ${success}`);
+        throw new Error(`success: ${success}`);
       }
     })
     .catch((e) => {
