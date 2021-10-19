@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.navigation > ul {
+  display: flex;
+  padding: 0;
+}
+
+.navigation__right {
+  composes: navigation;
+
+  margin-left: auto;
+}
+
+.logo {
+  position: absolute;
+}
+
+.navigation_item {
+  list-style-type: none;
+  display: flex;
+}
+
+.navigation_item > p {
+  margin-left: 8px;
+}
+
+
+.navigation_item__active {
+  color: #ffffff;
+}
+
+.navigation_item:not(.navigation_item__last) {
+  margin-right: 50px;
+}

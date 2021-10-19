@@ -1,0 +1,15 @@
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 8x;
+}
+
+.ingredients__scrolled {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: calc(100vh - (100vh - (80px * 3 + 30px)));
+  overflow-y: scroll;
+  padding-right: 8px;
+}
