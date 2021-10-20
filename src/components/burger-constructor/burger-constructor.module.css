@@ -9,13 +9,3 @@
   margin-top: 40px;
   padding-right: 16px;
 }
-
-.orderSummary {
-  margin-right: 40px;
-  display: flex;
-  align-items: center;
-}
-
-.orderSummary > p {
-  padding-right: 10px;
-}

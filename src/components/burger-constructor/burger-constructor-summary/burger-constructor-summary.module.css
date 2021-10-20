@@ -1,0 +1,9 @@
+.container {
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.container > p {
+  padding-right: 10px;
+}

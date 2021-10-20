@@ -1,10 +1,13 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import burgerIngredientsStyles from "./burger-ingredients.module.css";
 import { INGREDIENT_TYPES } from '../../utils/const';
 import BurgerIngredient from './burger-ingredient/burger-ingredient';
 import Tabs from '../tabs/tabs';
+import { GroupedIngredientsContext } from '../../services/dataContext';
 
-function BurgerIngredients({ groupedIngredients }) {
+function BurgerIngredients() {
+  const { groupedIngredients } = useContext(GroupedIngredientsContext);
+
   const renderCategories = groupedIngredients && Object.entries(groupedIngredients)?.map(
     ([group, ingredients]) => {
       return (
@@ -31,10 +34,6 @@ function BurgerIngredients({ groupedIngredients }) {
       </div>
     </div>
   );
-}
-
-BurgerIngredients.propTypes = {
-  groupedIngredients: PropTypes.object,
 }
 
 export default BurgerIngredients;

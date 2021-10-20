@@ -6,6 +6,9 @@
   margin-top: 20px;
 }
 
+.container > p {
+  text-align: center;
+}
 .number{
   margin-bottom: 32px;
 }
