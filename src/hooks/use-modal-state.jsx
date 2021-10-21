@@ -1,5 +1,5 @@
 import { useState } from 'react';
-function useModalState({ showModal, closeModal, initialState = false } = {}) {
+function useModalState(showModal, closeModal, initialState = false) {
 
   const [isShow, setIsShow] = useState(initialState);
 

@@ -1,10 +1,22 @@
-import PropTypes from 'prop-types';
+import { useContext, useMemo } from 'react';
 import burgerIngredientsStyles from "./burger-ingredients.module.css";
 import { INGREDIENT_TYPES } from '../../utils/const';
 import BurgerIngredient from './burger-ingredient/burger-ingredient';
 import Tabs from '../tabs/tabs';
+import { BurgerContext } from '../../services/dataContext';
 
-function BurgerIngredients({ groupedIngredients }) {
+function BurgerIngredients() {
+  const { data } = useContext(BurgerContext);
+
+  const groupedIngredients = useMemo(() => {
+    return data?.reduce((result, ingredient) => {
+      result[ingredient.type] = result[ingredient.type] || [];
+      result[ingredient.type].push(ingredient);
+      return result;
+    }, {})},
+   [data]
+  );
+
   const renderCategories = groupedIngredients && Object.entries(groupedIngredients)?.map(
     ([group, ingredients]) => {
       return (
@@ -31,10 +43,6 @@ function BurgerIngredients({ groupedIngredients }) {
       </div>
     </div>
   );
-}
-
-BurgerIngredients.propTypes = {
-  groupedIngredients: PropTypes.object,
 }
 
 export default BurgerIngredients;

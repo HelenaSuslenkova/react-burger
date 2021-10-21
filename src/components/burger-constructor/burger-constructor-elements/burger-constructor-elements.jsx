@@ -3,26 +3,23 @@ import BurgerConstructorElement from './burger-constructor-element/burger-constr
 import burgerConstructorElementsStyles from './burger-constructor-elements.module.css';
 import { burgerIngredientType } from '../../../utils/types';
 
-const BurgerConstructorElements = ({ mainBurgerElement, burgerIngredients }) => {
-
+const BurgerConstructorElements = ({ mainBun, ingredients }) => {
   return (
     <div className={burgerConstructorElementsStyles.ingredients}>
-      <BurgerConstructorElement element={mainBurgerElement} main position='top' />
+      <BurgerConstructorElement element={mainBun} main position='top' />
       <div className={burgerConstructorElementsStyles.ingredients__scrolled}>
-        {burgerIngredients?.map((element, index) =>
+        {ingredients?.map((element, index) =>
           <BurgerConstructorElement key={element._id} index={index} element={element} main={false} />
         )}
       </div>
-      <BurgerConstructorElement element={mainBurgerElement} main position='bottom' />
+      <BurgerConstructorElement element={mainBun} main position='bottom' />
     </div>
   )
 }
 
 BurgerConstructorElements.propTypes = {
-  mainBurgerElement: burgerIngredientType,
-  burgerIngredients: PropTypes.arrayOf(
-    burgerIngredientType,
-  ).isRequired,
+  mainBun: burgerIngredientType,
+  ingredients: PropTypes.arrayOf(burgerIngredientType),
 };
 
 export default BurgerConstructorElements;

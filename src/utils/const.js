@@ -1,5 +1,3 @@
-export const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
-
 export const INGREDIENT_TYPES = {
   'bun': 'Булки',
   'main': 'Начинки',
@@ -13,7 +11,17 @@ export const INGREDIENT_DETAILS_TITLES = {
   carbohydrates: 'Углеводы,г',
 }
 
-export const BULK_POSITIONS = {
+export const BUN_POSITIONS = {
     top: "верх",
     bottom: "низ",
 }
+
+export const orderButtonLabel = 'Оформить заказ';
+
+export const orderDetailsLabels = {
+  numberDescription: "идентификатор заказа",
+  status: "Ваш заказ начали готовить",
+  comment: "Дождитесь готовности на орбитальной станции"
+}
+
+export const modalTitle = "Детали ингридиента";

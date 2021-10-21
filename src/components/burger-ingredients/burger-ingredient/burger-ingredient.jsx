@@ -8,17 +8,12 @@ import Modal from '../../modals/modal/modal';
 import IngredientDetails from '../../ingredient-details/ingredient-details';
 import useModalState from '../../../hooks/use-modal-state';
 import { burgerIngredientType } from '../../../utils/types';
-
+import { modalTitle } from '../../../utils/const';
 function BurgerIngredient({ ingredient }) {
-  const modalTitle = "Детали ингридиента"
   const { image, name, price } = ingredient;
   const burgerIngredientRef = useRef(null);
 
-  const showModal = (e) => {
-    e.preventDefault();
-  }
-
-  const [isShow, closeHandler, showHandler ] = useModalState(showModal);
+  const [isShow, closeHandler, showHandler ] = useModalState();
 
   return (
     <>

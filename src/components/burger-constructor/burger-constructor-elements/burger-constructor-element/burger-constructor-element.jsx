@@ -4,13 +4,12 @@ import {
   DragIcon
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import burgerConstructorElementStyles from './burger-constructor-element.module.css';
-import { BULK_POSITIONS } from '../../../../utils/const';
+import { BUN_POSITIONS } from '../../../../utils/const';
 import { burgerIngredientType } from '../../../../utils/types';
 
 const BurgerConstructorElement = ({ element, main, position }) => {
-  const { name, price, image } = element;
   const isLocked = main;
-  const ingridientName = (position === 'top' && `${name} (${BULK_POSITIONS.top})`) || (position === 'bottom' && `${name} (${BULK_POSITIONS.bottom})`) || name;
+  const ingridientName = (position === 'top' && `${element?.name} (${BUN_POSITIONS.top})`) || (position === 'bottom' && `${element?.name} (${BUN_POSITIONS.bottom})`) || element?.name;
 
   return (
     <div className={burgerConstructorElementStyles.container}>
@@ -22,8 +21,8 @@ const BurgerConstructorElement = ({ element, main, position }) => {
           type={position}
           isLocked={isLocked}
           text={ingridientName}
-          price={price}
-          thumbnail={image}
+          price={element?.price}
+          thumbnail={element?.image}
         />
       </div>
     </div>

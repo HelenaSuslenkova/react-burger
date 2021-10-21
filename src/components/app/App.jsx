@@ -1,61 +1,47 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import appStyles from './app.module.css';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import { API_URL } from '../../utils/const';
+import { getData } from '../api/requests';
+import { OrderDetailsContext, BurgerContext } from '../../services/dataContext';
 
 function App() {
-  const [state, setState] = useState({
-    data: null,
-    loading: true
-  });
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [orderDetails, setOrderDetails] = useState(null);
 
   useEffect(() => {
-    getData();
+    getBurgersData();
   }, []);
 
-  async function getData() {
-    setState({...state, loading: true});
-    await fetch(
-      API_URL
-    ).then((result) => result.json())
-    .then(({ data, success }) => {
-      if (success) {
-        setState({ data, loading: false });
-      } else {
-        throw new Error(`success: ${success}`);
-      }
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  async function getBurgersData() {
+    setLoading(true);
+    try {
+      const burgersData = await getData();
+      burgersData && setData(burgersData);
+    } catch (e) {
+      console.log(e.message)
+    }
+    setLoading(false);
   }
-
-  const groupedIngredients = useMemo(
-    () =>
-      state.data?.reduce((result, ingredient) => {
-        result[ingredient.type] = result[ingredient.type] || [];
-        result[ingredient.type].push(ingredient);
-        return result;
-      }, {}),
-    [state]
-  );
 
   return (
     <>
       <header className={appStyles.header}>
         <AppHeader />
       </header>
-
       <main className={appStyles.container}>
-        <section className={appStyles.section}>
-          <BurgerIngredients groupedIngredients={groupedIngredients}/>
-        </section>
-
-        <section className={appStyles.section}>
-          <BurgerConstructor data={state.data}/>
-        </section>
+        <BurgerContext.Provider value={{data, setData}}>
+          <OrderDetailsContext.Provider value={{orderDetails, setOrderDetails}}>
+            <section className={appStyles.section}>
+              <BurgerIngredients />
+            </section>
+            <section className={appStyles.section}>
+              <BurgerConstructor />
+            </section>
+          </OrderDetailsContext.Provider>
+        </BurgerContext.Provider>
       </main>
     </>
   );
