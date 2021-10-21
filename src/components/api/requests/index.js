@@ -12,9 +12,6 @@ export function getData() {
     })
     .then(({ data }) => {
         return data;
-    })
-    .catch((e) => {
-      console.log(e);
     });
 }
 
@@ -41,8 +38,5 @@ export function getOrderDetails(ingredientIds = ['60d3b41abdacab0026a733c6']) {
     })
     .then((data) => {
       return data;
-    })
-    .catch((e) => {
-      console.log(e);
     });
 }

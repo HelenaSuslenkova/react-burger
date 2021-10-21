@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useContext, useMemo } from 'react';
 import {
   Button,
@@ -5,26 +6,24 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import burgerConstructorSummaryStyles from './burger-constructor-summary.module.css';
 import { orderButtonLabel } from '../../../utils/const';
-import {
-  MainBunContext,
-  IngredientsContext,
-  OrderDetailsContext,
-} from '../../../services/dataContext';
+import { OrderDetailsContext } from '../../../services/dataContext';
 import useModalState from '../../../hooks/use-modal-state';
 import Modal from '../../modals/modal/modal';
 import OrderDetails from '../../order-details/order-details';
 import { getOrderDetails } from '../../api/requests';
+import { burgerIngredientType } from '../../../utils/types';
 
-const BurgerConstructorSummary = () => {
-  const { mainBun } = useContext(MainBunContext);
-  const { ingredients } = useContext(IngredientsContext);
+const BurgerConstructorSummary = ({ mainBun, ingredients }) => {
   const { orderDetails, setOrderDetails } = useContext(OrderDetailsContext);
-
   const [isShow, closeHandler, showHandler] = useModalState(showModal);
 
-  async function showModal(){
-    const orderDetailsData = await getOrderDetails(orderIngredientIds);
-    setOrderDetails(orderDetailsData);
+  async function showModal() {
+    try {
+      const orderDetailsData = await getOrderDetails(orderIngredientIds);
+      setOrderDetails(orderDetailsData);
+    } catch (e) {
+      console.log(e.message)
+    }
   }
 
   const orderSum = useMemo(
@@ -60,5 +59,10 @@ const BurgerConstructorSummary = () => {
     </>
   )
 }
+
+BurgerConstructorSummary.propTypes = {
+  mainBun: burgerIngredientType,
+  ingredients: PropTypes.arrayOf(burgerIngredientType),
+};
 
 export default BurgerConstructorSummary;

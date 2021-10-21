@@ -1,12 +1,9 @@
-import { useContext, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import BurgerConstructorElement from './burger-constructor-element/burger-constructor-element';
 import burgerConstructorElementsStyles from './burger-constructor-elements.module.css';
-import { MainBunContext, IngredientsContext } from '../../../services/dataContext';
+import { burgerIngredientType } from '../../../utils/types';
 
-const BurgerConstructorElements = () => {
-  const { mainBun } = useContext(MainBunContext);
-  const { ingredients } = useContext(IngredientsContext);
-
+const BurgerConstructorElements = ({ mainBun, ingredients }) => {
   return (
     <div className={burgerConstructorElementsStyles.ingredients}>
       <BurgerConstructorElement element={mainBun} main position='top' />
@@ -19,5 +16,10 @@ const BurgerConstructorElements = () => {
     </div>
   )
 }
+
+BurgerConstructorElements.propTypes = {
+  mainBun: burgerIngredientType,
+  ingredients: PropTypes.arrayOf(burgerIngredientType),
+};
 
 export default BurgerConstructorElements;

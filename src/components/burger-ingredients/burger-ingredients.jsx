@@ -1,12 +1,21 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import burgerIngredientsStyles from "./burger-ingredients.module.css";
 import { INGREDIENT_TYPES } from '../../utils/const';
 import BurgerIngredient from './burger-ingredient/burger-ingredient';
 import Tabs from '../tabs/tabs';
-import { GroupedIngredientsContext } from '../../services/dataContext';
+import { BurgerContext } from '../../services/dataContext';
 
 function BurgerIngredients() {
-  const { groupedIngredients } = useContext(GroupedIngredientsContext);
+  const { data } = useContext(BurgerContext);
+
+  const groupedIngredients = useMemo(() => {
+    return data?.reduce((result, ingredient) => {
+      result[ingredient.type] = result[ingredient.type] || [];
+      result[ingredient.type].push(ingredient);
+      return result;
+    }, {})},
+   [data]
+  );
 
   const renderCategories = groupedIngredients && Object.entries(groupedIngredients)?.map(
     ([group, ingredients]) => {
