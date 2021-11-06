@@ -1,30 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import appStyles from './app.module.css';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import { getData } from '../api/requests';
-import { OrderDetailsContext, BurgerContext } from '../../services/dataContext';
+import { getBurgerIngredients } from '../../services/actions/burger-ingredients';
 
 function App() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [orderDetails, setOrderDetails] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getBurgersData();
+    dispatch(getBurgerIngredients());
   }, []);
-
-  async function getBurgersData() {
-    setLoading(true);
-    try {
-      const burgersData = await getData();
-      burgersData && setData(burgersData);
-    } catch (e) {
-      console.log(e.message)
-    }
-    setLoading(false);
-  }
 
   return (
     <>
@@ -32,16 +21,14 @@ function App() {
         <AppHeader />
       </header>
       <main className={appStyles.container}>
-        <BurgerContext.Provider value={{data, setData}}>
-          <OrderDetailsContext.Provider value={{orderDetails, setOrderDetails}}>
-            <section className={appStyles.section}>
-              <BurgerIngredients />
-            </section>
-            <section className={appStyles.section}>
-              <BurgerConstructor />
-            </section>
-          </OrderDetailsContext.Provider>
-        </BurgerContext.Provider>
+        <DndProvider backend={HTML5Backend}>
+          <section className={appStyles.section}>
+            <BurgerIngredients />
+          </section>
+          <section className={appStyles.section}>
+            <BurgerConstructor />
+          </section>
+        </DndProvider>
       </main>
     </>
   );

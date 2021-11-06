@@ -1,12 +1,13 @@
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import burgerIngredientsStyles from "./burger-ingredients.module.css";
 import { INGREDIENT_TYPES } from '../../utils/const';
 import BurgerIngredient from './burger-ingredient/burger-ingredient';
 import Tabs from '../tabs/tabs';
-import { BurgerContext } from '../../services/dataContext';
+import burgerIngredientsSelector from '../../services/selectors/burger-ingredients';
 
 function BurgerIngredients() {
-  const { data } = useContext(BurgerContext);
+  const data = useSelector(burgerIngredientsSelector.data);
 
   const groupedIngredients = useMemo(() => {
     return data?.reduce((result, ingredient) => {
@@ -38,7 +39,7 @@ function BurgerIngredients() {
         <p className="text text_type_main-large">Соберите бургер</p>
         <Tabs types={renderTypes}/>
       </div>
-      <div className={burgerIngredientsStyles.body}>
+      <div className={burgerIngredientsStyles.body} id='burgerIngredients'>
         {renderCategories}
       </div>
     </div>

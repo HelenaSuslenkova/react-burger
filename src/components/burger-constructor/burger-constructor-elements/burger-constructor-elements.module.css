@@ -13,3 +13,7 @@
   overflow-y: scroll;
   padding-right: 8px;
 }
+
+.emtyMessage {
+  padding-top: 16px;
+}

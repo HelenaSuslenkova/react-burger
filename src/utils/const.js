@@ -19,9 +19,23 @@ export const BUN_POSITIONS = {
 export const orderButtonLabel = 'Оформить заказ';
 
 export const orderDetailsLabels = {
-  numberDescription: "идентификатор заказа",
+  numberDescription: 'идентификатор заказа',
   status: "Ваш заказ начали готовить",
   comment: "Дождитесь готовности на орбитальной станции"
 }
 
-export const modalTitle = "Детали ингридиента";
+export const modalTitle = 'Детали ингридиента';
+
+export const DRAGGABLE_TYPES = {
+  ingredient: 'ingredient',
+  constructorElement: 'constructorElement',
+}
+
+export const defaultMessage = 'Тут пока пусто :(';
+
+
+export const TABS_TYPES = {
+  bun: 'bun',
+  main: 'main',
+  sauce: 'sauce',
+}
