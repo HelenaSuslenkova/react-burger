@@ -21,8 +21,8 @@ const Tabs = ({ types }) => {
     const targetHeight= event.target.clientHeight;
 
     Array.from(event.target.childNodes)?.forEach((element) => {
-      var bounds = element.getBoundingClientRect();
-      if (bounds.top > 0 && bounds.top < targetHeight) {
+      const top = element.getBoundingClientRect().top;
+      if (top > 0 && top < targetHeight) {
         setCurrent(element.id);
       }
     });

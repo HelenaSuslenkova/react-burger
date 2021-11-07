@@ -4,6 +4,7 @@ import {
   GET_ORDER_DETAILS_SUCCESS,
   GET_ORDER_DETAILS_ERROR
 } from '../action-types/burger-constructor-summary';
+import { deleteAllConstructorElements } from '../actions/burger-constructor-elements';
 
 export const requestOrderDetails = () => ({
   type: GET_ORDER_DETAILS_REQUEST
@@ -44,6 +45,7 @@ export function getOrderDetails(ingredientIds) {
     })
     .then((data) => {
       dispatch(successOrderDetails(data));
+      dispatch(deleteAllConstructorElements());
     })
     .catch((error) => {
       dispatch(errorOrderDetails(error.message));

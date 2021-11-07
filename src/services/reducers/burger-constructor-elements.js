@@ -3,6 +3,7 @@ import {
   SET_BURGER_ELEMENTS,
   UPDATE_BURGER_ELEMENTS,
   DELETE_BURGER_ELEMENT,
+  DELETE_ALL_CONSTRUCTOR_ELEMENTS,
 } from '../action-types/burger-constructor-elements';
 
 const initialState = {
@@ -41,6 +42,13 @@ export const burgerConstructorElementsReducer = (state = initialState, action) =
           ...sortElements(state.elements, action.payload.hoverIndex, action.payload.dragIndex),
         ],
         }
+    }
+    case DELETE_ALL_CONSTRUCTOR_ELEMENTS: {
+      return {
+        ...state,
+        elements: initialState.elements,
+        mainBun: initialState.mainBun,
+      }
     }
     default: {
       return state;

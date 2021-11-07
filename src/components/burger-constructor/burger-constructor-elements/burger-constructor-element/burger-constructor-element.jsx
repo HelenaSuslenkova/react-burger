@@ -30,14 +30,9 @@ const BurgerConstructorElement = ({ element, index, main, position }) => {
     dispatch(updateBurgerElements({dragIndex, hoverIndex}));
   }, [elements]);
 
-  const [{ handlerId }, drop] = useDrop({
+  const [, drop] = useDrop({
       accept: DRAGGABLE_TYPES.constructorElement,
-      collect(monitor) {
-        return {
-            handlerId: monitor.getHandlerId(),
-        };
-      },
-      drop(item, monitor) {
+      hover(item, monitor) {
         if (!ref.current) {
             return;
         }

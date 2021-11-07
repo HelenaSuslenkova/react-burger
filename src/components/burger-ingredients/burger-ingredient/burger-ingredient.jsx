@@ -11,11 +11,11 @@ import IngredientDetails from '../../ingredient-details/ingredient-details';
 import useModalState from '../../../hooks/use-modal-state';
 import { burgerIngredientType } from '../../../utils/types';
 import { modalTitle } from '../../../utils/const';
-import { DRAGGABLE_TYPES } from '../../../utils/const';
+import { DRAGGABLE_TYPES, TABS_TYPES } from '../../../utils/const';
 import burgerConstructorElementsSelector from '../../../services/selectors/burger-constructor-elements';
 
 function BurgerIngredient({ ingredient }) {
-  const { _id, image, name, price } = ingredient;
+  const { _id, type, image, name, price } = ingredient;
   const elements = useSelector(burgerConstructorElementsSelector.elements);
   const mainBun = useSelector(burgerConstructorElementsSelector.mainBun);
 
@@ -29,7 +29,7 @@ function BurgerIngredient({ ingredient }) {
       const data = [...elements, mainBun];
       const currentElements = data?.filter((element) => element._id === _id);
 
-      return currentElements.length || null;
+      return (type === TABS_TYPES.bun ? currentElements.length * 2 : currentElements.length) || null;
     }, [elements, mainBun]);
 
   const [isShow, closeHandler, showHandler ] = useModalState();

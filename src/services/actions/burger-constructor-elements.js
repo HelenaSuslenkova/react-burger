@@ -3,6 +3,7 @@ import {
   SET_BURGER_ELEMENTS,
   UPDATE_BURGER_ELEMENTS,
   DELETE_BURGER_ELEMENT,
+  DELETE_ALL_CONSTRUCTOR_ELEMENTS,
 } from '../action-types/burger-constructor-elements';
 
 export const setBurgerMainBun = (data) => ({
@@ -31,4 +32,8 @@ export const updateBurgerElements = (data) => ({
 export const deleteBurgerElement = (elementId) => ({
   type: DELETE_BURGER_ELEMENT,
   payload: elementId,
+});
+
+export const deleteAllConstructorElements = () => ({
+  type: DELETE_ALL_CONSTRUCTOR_ELEMENTS,
 });

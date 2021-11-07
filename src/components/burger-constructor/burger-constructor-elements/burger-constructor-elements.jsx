@@ -1,15 +1,16 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from "react-dnd";
-import PropTypes from 'prop-types';
 import BurgerConstructorElement from './burger-constructor-element/burger-constructor-element';
 import burgerConstructorElementsStyles from './burger-constructor-elements.module.css';
-import { burgerIngredientType } from '../../../utils/types';
 import { defaultMessage } from '../../../utils/const';
 import { DRAGGABLE_TYPES, TABS_TYPES } from '../../../utils/const';
 import { setBurgerMainBun, setBurgerElements } from '../../../services/actions/burger-constructor-elements';
+import burgerConstructorElementsSelector from '../../../services/selectors/burger-constructor-elements';
 
-const BurgerConstructorElements = ({ mainBun, ingredients }) => {
+const BurgerConstructorElements = () => {
   const dispatch = useDispatch();
+  const mainBun = useSelector(burgerConstructorElementsSelector.mainBun);
+  const ingredients = useSelector(burgerConstructorElementsSelector.elements);
 
   const isEmptyBurgerConstructor = mainBun && !Object.keys(mainBun).length && ingredients && !ingredients.length;
   const isMainBun = mainBun && !!Object.keys(mainBun).length;
@@ -48,10 +49,5 @@ const BurgerConstructorElements = ({ mainBun, ingredients }) => {
       </div>
   )
 }
-
-BurgerConstructorElements.propTypes = {
-  mainBun: burgerIngredientType,
-  ingredients: PropTypes.arrayOf(burgerIngredientType),
-};
 
 export default BurgerConstructorElements;
