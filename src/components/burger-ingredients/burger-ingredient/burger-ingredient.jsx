@@ -1,4 +1,6 @@
-import { useRef } from 'react';
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import { useDrag } from "react-dnd";
 import burgerIngredientStyles from './burger-ingredient.module.css';
 import {
   Counter,
@@ -9,9 +11,26 @@ import IngredientDetails from '../../ingredient-details/ingredient-details';
 import useModalState from '../../../hooks/use-modal-state';
 import { burgerIngredientType } from '../../../utils/types';
 import { modalTitle } from '../../../utils/const';
+import { DRAGGABLE_TYPES, TABS_TYPES } from '../../../utils/const';
+import burgerConstructorElementsSelector from '../../../services/selectors/burger-constructor-elements';
+
 function BurgerIngredient({ ingredient }) {
-  const { image, name, price } = ingredient;
-  const burgerIngredientRef = useRef(null);
+  const { _id, type, image, name, price } = ingredient;
+  const elements = useSelector(burgerConstructorElementsSelector.elements);
+  const mainBun = useSelector(burgerConstructorElementsSelector.mainBun);
+
+  const [, burgerIngredientRef] = useDrag({
+    type: DRAGGABLE_TYPES.ingredient,
+    item: ingredient,
+  });
+
+  const count = useMemo(
+    () => {
+      const data = [...elements, mainBun];
+      const currentElements = data?.filter((element) => element._id === _id);
+
+      return (type === TABS_TYPES.bun ? currentElements.length * 2 : currentElements.length) || null;
+    }, [elements, mainBun]);
 
   const [isShow, closeHandler, showHandler ] = useModalState();
 
@@ -28,7 +47,7 @@ function BurgerIngredient({ ingredient }) {
           <CurrencyIcon type="primary" />
         </div>
         <p className="name text text_type_main-default">{name}</p>
-        <Counter className={burgerIngredientStyles.counter} count={1} size="default" />
+        {count && <Counter className={burgerIngredientStyles.counter} count={count} size="default" />}
       </div>
 
       <Modal isShow={isShow} title={modalTitle} closeModal={closeHandler}>
