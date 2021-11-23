@@ -13,7 +13,7 @@ const Tabs = ({ types }) => {
     document.getElementById('burgerIngredients').addEventListener('scroll', handleScroll);
 
     return () => {
-      document.getElementById('burgerIngredients').removeEventListener('scroll', handleScroll)
+      document.getElementById('burgerIngredients')?.removeEventListener('scroll', handleScroll)
     }
   }, [])
 

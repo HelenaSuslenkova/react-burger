@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  width: 1240px;
+  margin: auto;
+  margin-top: 120px;
+}
+
+.left_col {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  margin-right: 60px;
+}
+.info {
+  margin-top: 80px;
+}
+
+.navigation {
+  display: flex;
+}
+
+.navigation > ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.navigation_item {
+  padding: 16px 0;
+}
+
+.link {
+  text-decoration: none;
+}

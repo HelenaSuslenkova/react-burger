@@ -1,3 +1,7 @@
+.header {
+  background-color: #1C1C21;
+  display: flex;
+}
 .container {
   display: flex;
   align-items: center;
@@ -35,11 +39,18 @@
   margin-left: 8px;
 }
 
-
 .navigation_item__active {
   color: #ffffff;
 }
 
 .navigation_item:not(.navigation_item__last) {
   margin-right: 50px;
+}
+
+.link_wrapper {
+  margin-left: 8px;
+}
+
+.link {
+  text-decoration: none;
 }

@@ -24,7 +24,7 @@ export const orderDetailsLabels = {
   comment: "Дождитесь готовности на орбитальной станции"
 }
 
-export const modalTitle = 'Детали ингридиента';
+export const ingredientDetailsTitle = 'Детали ингридиента';
 
 export const DRAGGABLE_TYPES = {
   ingredient: 'ingredient',
@@ -38,4 +38,13 @@ export const TABS_TYPES = {
   bun: 'bun',
   main: 'main',
   sauce: 'sauce',
+}
+
+export const HEADER_MENU_TYPES = {
+  left: 'left',
+  right: 'right',
+}
+
+export const PROFILE_MENU_TYPES = {
+  left: 'left',
 }

@@ -2,13 +2,12 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import appStyles from './app.module.css';
-import AppHeader from '../app-header/app-header';
-import BurgerIngredients from '../burger-ingredients/burger-ingredients';
-import BurgerConstructor from '../burger-constructor/burger-constructor';
+import mainStyles from './main.module.css';
+import BurgerIngredients from '../../components/burger-ingredients/burger-ingredients';
+import BurgerConstructor from '../../components/burger-constructor/burger-constructor';
 import { getBurgerIngredients } from '../../services/actions/burger-ingredients';
 
-function App() {
+export function MainPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,15 +16,12 @@ function App() {
 
   return (
     <>
-      <header className={appStyles.header}>
-        <AppHeader />
-      </header>
-      <main className={appStyles.container}>
+      <main className={mainStyles.container}>
         <DndProvider backend={HTML5Backend}>
-          <section className={appStyles.section}>
+          <section className={mainStyles.section}>
             <BurgerIngredients />
           </section>
-          <section className={appStyles.section}>
+          <section className={mainStyles.section}>
             <BurgerConstructor />
           </section>
         </DndProvider>
@@ -33,5 +29,3 @@ function App() {
     </>
   );
 }
-
-export default App;

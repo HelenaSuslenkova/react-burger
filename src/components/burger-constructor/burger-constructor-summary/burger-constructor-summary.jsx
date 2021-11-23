@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import burgerConstructorSummaryStyles from './burger-constructor-summary.module.css';
 import { orderButtonLabel } from '../../../utils/const';
@@ -9,9 +10,12 @@ import OrderDetails from '../../order-details/order-details';
 import { getOrderDetails } from '../../../services/actions/burger-constructor-summary';
 import burgerConstructorSummarySelector from '../../../services/selectors/burger-constructor-summary';
 import burgerConstructorElementsSelector from '../../../services/selectors/burger-constructor-elements';
+import isAutenticated from '../../../services/auth/auth';
+import { generateRoutePath, RouteName } from '../../../routes/helper';
 
 const BurgerConstructorSummary = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const mainBun = useSelector(burgerConstructorElementsSelector.mainBun);
   const ingredients = useSelector(burgerConstructorElementsSelector.elements);
   const orderDetails = useSelector(burgerConstructorSummarySelector.orderDetails.data);
@@ -19,7 +23,11 @@ const BurgerConstructorSummary = () => {
   const [isShow, closeHandler, showHandler] = useModalState(showModal);
 
   async function showModal() {
-    dispatch(getOrderDetails(orderIngredientIds));
+    if (!isAutenticated()) {
+      navigate(generateRoutePath({name: RouteName.login}))
+    } else {
+      dispatch(getOrderDetails(orderIngredientIds));
+    }
   }
 
   const orderSum = useMemo(

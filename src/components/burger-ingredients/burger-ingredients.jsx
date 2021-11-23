@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 import burgerIngredientsStyles from "./burger-ingredients.module.css";
 import { INGREDIENT_TYPES } from '../../utils/const';
 import BurgerIngredient from './burger-ingredient/burger-ingredient';
@@ -42,6 +43,8 @@ function BurgerIngredients() {
       <div className={burgerIngredientsStyles.body} id='burgerIngredients'>
         {renderCategories}
       </div>
+
+      <Outlet/>
     </div>
   );
 }

@@ -1,0 +1,15 @@
+.form {
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input:first-of-type {
+  margin: 24px 0 12px;
+}
+.input:last-of-type {
+  margin: 12px 0 24px;
+}
+.button {
+  margin: 0 auto;
+}
