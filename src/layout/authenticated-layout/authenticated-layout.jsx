@@ -1,4 +1,3 @@
-import AppHeader from '../../components/app-header/app-header';
 import { useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
@@ -37,7 +36,6 @@ export function AuthenticatedLayout({ children }) {
 
   return(
     <>
-      <AppHeader />
       {children}
     </>
   );

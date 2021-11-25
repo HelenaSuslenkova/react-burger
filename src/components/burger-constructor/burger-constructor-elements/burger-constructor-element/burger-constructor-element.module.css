@@ -11,3 +11,7 @@
   flex-grow: 1;
   margin-left: 4px;
 }
+
+.burgerElement__drugged:hover {
+  cursor: pointer;
+}

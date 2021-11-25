@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import forgotPasswordStyles from './forgot-password.module.css';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -8,11 +8,13 @@ import { sendResetPasswordCode } from '../../services/actions/user-details';
 
 export function ForgotPasswordPage() {
   const navigate = useNavigate();
-  const initialState = { email: ''};
-  const [form, setValue] = useState(initialState);
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
 
+  const initialState = { email: ''};
+  const [form, setValue] = useState(initialState);
   const title = 'Восстановление пароля';
+
   const onChange = (event) => {
     const { name, value } = event.target;
     setValue({ ...form, [name]: value });
@@ -24,7 +26,11 @@ export function ForgotPasswordPage() {
 
     if(data?.success) {
       setValue(initialState);
-      navigate(generateRoutePath({name: RouteName.resetPassword}));
+      navigate(generateRoutePath({name: RouteName.resetPassword}), {
+        state: {
+          path: pathname,
+        }
+      });
     }
   };
 

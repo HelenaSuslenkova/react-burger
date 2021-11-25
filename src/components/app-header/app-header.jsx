@@ -1,12 +1,18 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import mainStyles from '../../pages/main/main.module.css';
 import headerStyles from "./app-header.module.css";
 import { Logo,} from '@ya.praktikum/react-developer-burger-ui-components';
-import { getHeaderMenuRoutes } from '../../routes/helper';
+import { getHeaderMenuRoutes, generateRoutePath, RouteName } from '../../routes/helper';
 import { HEADER_MENU_TYPES } from '../../utils/const';
 import MenuIcon from '../menu-icon/menu-icon';
 
 function AppHeader() {
+  const navigate = useNavigate();
+
+  const onClickLogo = () => {
+    navigate(generateRoutePath({name: RouteName.main}));
+  }
+
   return (
     <header className={headerStyles.header}>
       <div className={`${mainStyles.container} ${headerStyles.container}`}>
@@ -29,7 +35,7 @@ function AppHeader() {
           </ul>
         </nav>
 
-        <div className={headerStyles.logo}><Logo /></div>
+        <div onClick={onClickLogo} className={headerStyles.logo}><Logo /></div>
 
         <nav className={headerStyles.navigation__right}>
           <ul>

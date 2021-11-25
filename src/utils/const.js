@@ -48,3 +48,8 @@ export const HEADER_MENU_TYPES = {
 export const PROFILE_MENU_TYPES = {
   left: 'left',
 }
+
+export const MODAL_TYPES = {
+  modalOrder: 'modal-order',
+  modalIngredient: 'modal-ingredient',
+}

@@ -30,6 +30,10 @@
   position: absolute;
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
 .navigation_item {
   list-style-type: none;
   display: flex;

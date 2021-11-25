@@ -74,7 +74,7 @@ const routes = {
   [RouteName.resetPassword]: {
     label: 'Reset Password',
     path: '/reset-password',
-    type: routeTypes.unauthenticated,
+    type: '',
     headerMenu: false,
     profileMenu: false,
     element: <ResetPasswordPage/>,

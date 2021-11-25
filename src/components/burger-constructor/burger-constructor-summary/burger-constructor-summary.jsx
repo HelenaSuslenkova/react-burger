@@ -12,6 +12,7 @@ import burgerConstructorSummarySelector from '../../../services/selectors/burger
 import burgerConstructorElementsSelector from '../../../services/selectors/burger-constructor-elements';
 import isAutenticated from '../../../services/auth/auth';
 import { generateRoutePath, RouteName } from '../../../routes/helper';
+import { MODAL_TYPES } from '../../../utils/const';
 
 const BurgerConstructorSummary = () => {
   const dispatch = useDispatch();
@@ -57,9 +58,11 @@ const BurgerConstructorSummary = () => {
         {orderButtonLabel}
       </Button>
 
-      <Modal isShow={isShow} closeModal={closeHandler}>
-        <OrderDetails orderDetailsData={orderDetails}/>
-      </Modal>
+      { isShow &&
+        <Modal isShow={isShow} modalType={MODAL_TYPES.modalOrder} closeModal={closeHandler}>
+          <OrderDetails orderDetailsData={orderDetails}/>
+        </Modal>
+      }
     </>
   )
 }

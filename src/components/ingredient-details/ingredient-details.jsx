@@ -1,22 +1,16 @@
 import { useParams, useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import ingredientDetailsStyles from './ingredient-details.module.css';
 import { INGREDIENT_DETAILS_TITLES, ingredientDetailsTitle } from '../../utils/const';
 
 import burgerIngredientsSelector from '../../services/selectors/burger-ingredients';
-import { getBurgerIngredients } from '../../services/actions/burger-ingredients';
 
 function IngredientDetails() {
-  const dispatch = useDispatch();
   const { state } = useLocation();
   const { id: ingredientId } = useParams();
   const [ ingredient, setIngredient ] = useState(null);
   const data  = useSelector(burgerIngredientsSelector.data);
-
-  useEffect(() => {
-    !state?.isModalOpen && dispatch(getBurgerIngredients());
-  }, []);
 
   useEffect(() => {
     const currentIngredient = data.filter((item) => item._id === ingredientId)[0];

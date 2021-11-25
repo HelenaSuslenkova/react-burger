@@ -1,36 +1,32 @@
-import { BrowserRouter as Router, Routes as ReactRouterDomRoutes, Route, useLocation } from 'react-router-dom';
+import { Routes as ReactRouterDomRoutes, Route, useLocation } from 'react-router-dom';
 import { AuthenticatedLayout, UnauthenticatedLayout, CommonLayout} from '../layout';
+import { MODAL_TYPES } from '../utils/const';
 
 import {
   UserDetailsPage,
   UserProfilePage,
   MainPage,
   IngredientPage,
+  ResetPasswordPage,
  } from '../pages';
- import IngredientModal from '../components/modals/modal/ingredient-modal';
+ import Modal from '../components/modals/modal/modal';
  import IngredientDetails from '../components/ingredient-details/ingredient-details';
 
 import { getRoutes, routeTypes } from './helper';
 import { ingredientDetailsTitle } from '../utils/const';
 
-export const AppRoutes = () => {
-  return (
-    <Router>
-      <Routes/>
-    </Router>
-  )
-};
-
-const Routes = () => {
+export const Routes = () => {
   const { state } = useLocation();
 
   return (
-  <>
     <ReactRouterDomRoutes>
       <Route path="/profile" element={<AuthenticatedLayout><UserDetailsPage/></AuthenticatedLayout>}>
         <Route path="" element={<UserProfilePage />} />
         <Route path="orders" element={<>UserOrdersPage</>} />
       </Route>
+      {state?.path === "/forgot-password" &&
+        <Route path="/reset-password" element={<UnauthenticatedLayout><ResetPasswordPage/></UnauthenticatedLayout>} />
+      }
       {getRoutes()[routeTypes.unauthenticated].map(({ label, element, path }) => (
         <Route key={label} element={<UnauthenticatedLayout>{element}</UnauthenticatedLayout>} path={path} />
       ))}
@@ -41,9 +37,8 @@ const Routes = () => {
         <Route path="ingredients/:id" element={<CommonLayout><IngredientPage/></CommonLayout>} />
       }
       <Route path="/" element={<CommonLayout><MainPage/></CommonLayout>}>
-        <Route path="ingredients/:id" element={<IngredientModal title={ingredientDetailsTitle} children={<IngredientDetails />}/>} />
+        <Route path="ingredients/:id" element={<Modal modalType={MODAL_TYPES.modalIngredient} title={ingredientDetailsTitle} children={<IngredientDetails />}/>} />
       </Route>
     </ReactRouterDomRoutes>
-  </>
   )
 }
