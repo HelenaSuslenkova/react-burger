@@ -1,16 +1,10 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useDrag } from "react-dnd";
 import burgerIngredientStyles from './burger-ingredient.module.css';
-import {
-  Counter,
-  CurrencyIcon,
-} from '@ya.praktikum/react-developer-burger-ui-components';
-import Modal from '../../modals/modal/modal';
-import IngredientDetails from '../../ingredient-details/ingredient-details';
-import useModalState from '../../../hooks/use-modal-state';
+import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { burgerIngredientType } from '../../../utils/types';
-import { modalTitle } from '../../../utils/const';
 import { DRAGGABLE_TYPES, TABS_TYPES } from '../../../utils/const';
 import burgerConstructorElementsSelector from '../../../services/selectors/burger-constructor-elements';
 
@@ -32,13 +26,21 @@ function BurgerIngredient({ ingredient }) {
       return (type === TABS_TYPES.bun ? currentElements.length * 2 : currentElements.length) || null;
     }, [elements, mainBun]);
 
-  const [isShow, closeHandler, showHandler ] = useModalState();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   return (
     <>
       <div
         ref={burgerIngredientRef}
-        onClick={showHandler}
+        onClick={() => {
+          navigate(`ingredients/${_id}`, {
+            state: {
+              isModalOpen: true,
+              path: pathname,
+            }
+          });
+        }}
         className={burgerIngredientStyles.categorie__item}
       >
         <img className={burgerIngredientStyles.picture} src={image} alt=''/>
@@ -49,10 +51,6 @@ function BurgerIngredient({ ingredient }) {
         <p className="name text text_type_main-default">{name}</p>
         {count && <Counter className={burgerIngredientStyles.counter} count={count} size="default" />}
       </div>
-
-      <Modal isShow={isShow} title={modalTitle} closeModal={closeHandler}>
-        <IngredientDetails ingredient={ingredient}/>
-      </Modal>
     </>
   );
 }

@@ -68,7 +68,7 @@ const BurgerConstructorElement = ({ element, index, main, position }) => {
       {!isLocked &&
         <DragIcon type="primary" />
       }
-      <div className={burgerConstructorElementStyles.burgerElement}>
+      <div className={`${burgerConstructorElementStyles.burgerElement} ${!isLocked && burgerConstructorElementStyles.burgerElement__drugged}`}>
         <ConstructorElement
           type={position}
           isLocked={isLocked}
