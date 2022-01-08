@@ -1,12 +1,14 @@
+import { RootState } from '../../services/types/store';
+
 export const userDetailsSelector = {
-  email: (state: any) => state.userDetails.email,
-  name: (state: any) => state.userDetails.name,
-  useDetails: (state: any) => ({
+  email: (state: RootState) => state.userDetails.email,
+  name: (state: RootState) => state.userDetails.name,
+  useDetails: (state: RootState) => ({
     name: state.userDetails.name,
     email: state.userDetails.email,
   }),
-  isUserDetails: (state: any) => state.userDetails.email && state.userDetails.name,
-  error: (state: any) => state.userDetails.error,
-  userAuthRequest: (state: any) => state.userDetails.userAuthRequest,
-  userAuthError: (state: any) => state.userDetails.userAuthError,
+  isUserDetails: (state: RootState) => state.userDetails.email && state.userDetails.name,
+  error: (state: RootState) => state.userDetails.error,
+  userDetailsRequest: (state: RootState) => state.userDetails.userDetailsRequest,
+  userDetailsError: (state: RootState) => state.userDetails.userDetailsError,
 }

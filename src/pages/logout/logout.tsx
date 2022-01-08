@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/types/hooks';
 import { Navigate } from 'react-router-dom';
 import { unauthorization } from '../../services/actions/user-details';
 import { generateRoutePath, RouteName } from '../../routes/helper';

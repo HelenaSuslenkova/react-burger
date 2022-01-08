@@ -1,6 +1,6 @@
 import { ChangeEventHandler, FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/types/hooks';
 import resetPasswordStyles from './reset-password.module.css';
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { generateRoutePath, RouteName } from '../../routes/helper';

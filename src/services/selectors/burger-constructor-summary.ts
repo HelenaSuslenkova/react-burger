@@ -1,9 +1,11 @@
+import { RootState } from '../../services/types/store';
+
 export const burgerConstructorSummarySelector = {
   orderDetails: {
-    data: (state: any) => state.burgerConstructorSummary.orderDetails.data,
-    error: (state: any) => state.burgerConstructorSummary.orderDetails.error,
-    orderDetailsRequest: (state: any) => state.burgerConstructorSummary.orderDetails.orderDetailsRequest,
-    orderDetailsError: (state: any) => state.burgerConstructorSummary.orderDetails.orderDetailsError,
+    data: (state: RootState) => state.burgerConstructorSummary.orderDetails.data,
+    error: (state: RootState) => state.burgerConstructorSummary.orderDetails.error,
+    orderDetailsRequest: (state: RootState) => state.burgerConstructorSummary.orderDetails.orderDetailsRequest,
+    orderDetailsError: (state: RootState) => state.burgerConstructorSummary.orderDetails.orderDetailsError,
   }
 }
 

@@ -12,8 +12,16 @@ import {
   USER_UNAUTHORIZATION_SUCCESS,
   USER_UNAUTHORIZATION_ERROR,
 } from '../action-types/user-details';
+import { TUserDetailsActions } from '../actions/user-details';
 
-const initialState = {
+type TUserDetailsState = {
+  email: string,
+  name: string,
+  userDetailsRequest: boolean,
+  userDetailsError: boolean,
+  error: string | null,
+}
+const initialState : TUserDetailsState = {
   email: '',
   name: '',
   userDetailsRequest: false,
@@ -21,7 +29,7 @@ const initialState = {
   error: null,
 };
 
-export const userDetailsReducer = (state = initialState, action: any) => {
+export const userDetailsReducer = (state = initialState, action: TUserDetailsActions) : TUserDetailsState => {
   switch(action.type) {
     case USER_REGISTRATION_REQUEST:
     case USER_AUTHORIZATION_REQUEST:

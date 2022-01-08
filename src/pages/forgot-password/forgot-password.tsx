@@ -1,11 +1,11 @@
 import { useState, ChangeEventHandler, FormEvent } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/types/hooks';
 import forgotPasswordStyles from './forgot-password.module.css';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { generateRoutePath, RouteName } from '../../routes/helper';
 import { sendResetPasswordCode } from '../../services/actions/user-details';
-import { ForgotPasswordRequestType, UnauthorizationResponceType } from '../../utils/types';
+import { ForgotPasswordRequestType } from '../../utils/types';
 
 export const ForgotPasswordPage = (): JSX.Element => {
   const navigate = useNavigate();

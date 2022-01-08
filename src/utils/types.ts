@@ -13,6 +13,13 @@ export interface BurgerIngredientType {
   image_large: string,
   __v: number,
 }
+export type OrderDetailsType = {
+  name: string,
+  order: {
+    number: number,
+  }
+  success: boolean,
+};
 export type ForgotPasswordRequestType = {
   email: string,
 }

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../../services/types/hooks';
 import { useDrop } from "react-dnd";
 import { BurgerConstructorElement } from './burger-constructor-element/burger-constructor-element';
 import burgerConstructorElementsStyles from './burger-constructor-elements.module.css';

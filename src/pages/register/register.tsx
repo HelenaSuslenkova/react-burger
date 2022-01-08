@@ -1,5 +1,5 @@
 import { useState, ChangeEventHandler, FormEvent } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/types/hooks';
 import { Link, useNavigate } from 'react-router-dom';
 import registrationStyles from './register.module.css';
 import { Button, Input, EmailInput, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';

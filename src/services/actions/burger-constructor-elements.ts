@@ -7,12 +7,43 @@ import {
 } from '../action-types/burger-constructor-elements';
 import { BurgerIngredientType } from '../../utils/types';
 
-export const setBurgerMainBun = (data: BurgerIngredientType) => ({
+export type UpdateBurgerElementsData = {
+  dragIndex: number,
+  hoverIndex: number,
+}
+export interface ISetBurgerMainBun {
+  readonly type: typeof SET_BURGER_MAIN_BUN;
+  readonly payload: BurgerIngredientType;
+}
+export interface ISetBurgerElements {
+  readonly type: typeof SET_BURGER_ELEMENTS;
+  readonly payload: BurgerIngredientType & {id: string};
+}
+export interface IUpdateBurgerElements {
+  readonly type: typeof UPDATE_BURGER_ELEMENTS;
+  readonly payload: UpdateBurgerElementsData;
+}
+export interface IDeleteBurgerElement {
+  readonly type: typeof DELETE_BURGER_ELEMENT;
+  readonly payload: string;
+}
+export interface IDeleteAllConstructorElements {
+  readonly type: typeof DELETE_ALL_CONSTRUCTOR_ELEMENTS;
+}
+
+export type TBurgerConstructorElementsActions =
+  | ISetBurgerMainBun
+  | ISetBurgerElements
+  | IUpdateBurgerElements
+  | IDeleteBurgerElement
+  | IDeleteAllConstructorElements;
+
+export const setBurgerMainBun = (data: BurgerIngredientType) : ISetBurgerMainBun => ({
   type: SET_BURGER_MAIN_BUN,
   payload: data,
 });
 
-export const setBurgerElements = (data: BurgerIngredientType) => {
+export const setBurgerElements = (data: BurgerIngredientType) : ISetBurgerElements => {
   const payload = {
     ...data,
     id: Math.random().toString(36),
@@ -24,17 +55,16 @@ export const setBurgerElements = (data: BurgerIngredientType) => {
   }
 }
 
-
-export const updateBurgerElements = (data: {dragIndex: number, hoverIndex: number}) => ({
+export const updateBurgerElements = (data: UpdateBurgerElementsData) : IUpdateBurgerElements => ({
   type: UPDATE_BURGER_ELEMENTS,
   payload: data,
 });
 
-export const deleteBurgerElement = (elementId: string) => ({
+export const deleteBurgerElement = (elementId: string) : IDeleteBurgerElement => ({
   type: DELETE_BURGER_ELEMENT,
   payload: elementId,
 });
 
-export const deleteAllConstructorElements = () => ({
+export const deleteAllConstructorElements = () : IDeleteAllConstructorElements => ({
   type: DELETE_ALL_CONSTRUCTOR_ELEMENTS,
 });

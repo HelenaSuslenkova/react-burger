@@ -1,5 +1,5 @@
 import { useParams, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../services/types/hooks';
 import { useEffect, useState } from 'react';
 import ingredientDetailsStyles from './ingredient-details.module.css';
 import { INGREDIENT_DETAILS_TITLES, INGREDIENT_DETAILS_TITLE } from '../../utils/const';
