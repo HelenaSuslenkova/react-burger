@@ -1,0 +1,23 @@
+.container {
+  width: 1240px;
+  margin: auto;
+  display: flex;
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.section:first-of-type {
+  margin-right: 40px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8585AD;
+}

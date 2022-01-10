@@ -31,7 +31,7 @@ export const Modal: FC<ModalProps> = ({ isShow, closeModal, title, children, mod
   }
 
   const closeHandler = () => {
-    if (modal === MODAL_TYPES.modalIngredient) {
+    if (modal === MODAL_TYPES.modalIngredient || modal === MODAL_TYPES.modalOrderFeed) {
       resetModalState();
       navigate(state?.path);
     } else if (modal === MODAL_TYPES.modalOrder) {
@@ -47,7 +47,7 @@ export const Modal: FC<ModalProps> = ({ isShow, closeModal, title, children, mod
   }
 
   useEffect(() => {
-    if (modal === MODAL_TYPES.modalIngredient) {
+    if (modal === MODAL_TYPES.modalIngredient || modal === MODAL_TYPES.modalOrderFeed) {
       setIsShowModal(isModalOpen);
     } else if (modal === MODAL_TYPES.modalOrder) {
       setIsShowModal(isShow!);

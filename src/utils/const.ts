@@ -32,6 +32,7 @@ export enum PROFILE_MENU_TYPES {
 export enum MODAL_TYPES {
   modalOrder = 'modal-order',
   modalIngredient = 'modal-ingredient',
+  modalOrderFeed = 'modal-order-feed',
 }
 
 export const DEFAULT_MESSAGE_TITLE = 'Тут пока пусто :(';

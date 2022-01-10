@@ -19,7 +19,7 @@ export const MenuIcon: FC<MenuIconProps> = ({ path }): JSX.Element => {
   useEffect(() => {
     if (path === generateRoutePath({name: RouteName.main})) {
       setMenuIcon(<BurgerIcon type={iconType}/>);
-    } else if (path === generateRoutePath({name: RouteName.listOrders})) {
+    } else if (path === generateRoutePath({name: RouteName.ordersFeed})) {
       setMenuIcon(<ListIcon type={iconType}/>);
     } else if (path === generateRoutePath({name: RouteName.profile})) {
       setMenuIcon(<ProfileIcon type={iconProfileType}/>);

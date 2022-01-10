@@ -57,3 +57,19 @@ export type RefreshTokenResponceType = UnauthorizationResponceType & {
   accessToken: string,
   refreshToken: string,
 }
+
+type OrdersType = {
+  ingredients: Array<string>,
+  _id: string,
+  status: string,
+  number: number,
+  createdAt: string,
+  updatedAt: string,
+}
+
+export type OrdersListResponceType = {
+  success: boolean,
+  orders: Array<OrdersType>,
+  total: number,
+  totalToday: number,
+}

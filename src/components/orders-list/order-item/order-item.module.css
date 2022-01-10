@@ -1,0 +1,40 @@
+.order {
+  display:flex;
+  flex-direction: column;
+  padding: 24px;
+  background: #1C1C21;
+  border-radius: 40px;
+}
+.order:hover {
+  cursor: pointer;
+}
+
+.order:not(:first-of-type) {
+  margin: 16px 0px;
+}
+
+.info {
+  display:flex;
+  justify-content: space-between;
+}
+.title {
+  padding-top: 12px;
+  padding-bottom: 24px;
+}
+.ingredients {
+  display:flex;
+  justify-content: space-between;
+}
+.priceInfo {
+  display: flex;
+  align-items: center;
+}
+.price {
+  padding-right: 8px;
+}
+.ingredientImage {
+  height: 64px;
+  width: 64px;
+  border: 1px var(--colors-interface-accent);
+  border-radius: 50%;
+}
