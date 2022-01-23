@@ -1,4 +1,4 @@
-import { RootState } from '../../services/types/store';
+import { RootState } from '../types/store';
 
 export const userDetailsSelector = {
   email: (state: RootState) => state.userDetails.email,

@@ -5,14 +5,16 @@ import { TUserDetailsActions } from '../actions/user-details';
 import { TBurgerIngredientsActions } from '../actions/burger-ingredients';
 import { TBurgerConstructorSummaryActions } from '../actions/burger-constructor-summary';
 import { TBurgerConstructorElementsActions } from '../actions/burger-constructor-elements';
+import { TWSActions } from '../actions/ws';
 
 const store = configureStore({});
 
-type TApplicationActions =
+export type TApplicationActions =
   TUserDetailsActions |
   TBurgerIngredientsActions |
   TBurgerConstructorSummaryActions |
-  TBurgerConstructorElementsActions;
+  TBurgerConstructorElementsActions |
+  TWSActions;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

@@ -1,17 +1,21 @@
-import { useMemo, FC } from 'react';
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useMemo, useEffect, FC } from "react";
+import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ordersListStyles from "./orders-list.module.css";
-import { OrdersListResponceType } from '../../utils/types';
-import { useSelector } from '../../services/types/hooks';
-import burgerIngredientsSelector from '../../services/selectors/burger-ingredients';
-import { BurgerIngredientType } from '../../utils/types';
+import { OrdersListResponceType } from "../../utils/types";
+import { useSelector, useDispatch } from "../../services/types/hooks";
+import burgerIngredientsSelector from "../../services/selectors/burger-ingredients";
+import { BurgerIngredientType } from "../../utils/types";
+import { wsSelector } from "../../services/selectors/ws";
+import { wsConnectionStart } from '../../services/actions/ws';
 
 type OrdersListProps = {
   headerTitle?: string;
-}
+};
 
-export const OrdersList: FC<OrdersListProps> = ({ headerTitle = '', children }): JSX.Element => {
-
+export const OrdersList: FC<OrdersListProps> = ({
+  headerTitle = "",
+  children,
+}): JSX.Element => {
   // const data: OrdersListResponceType =
   // {
   //   "success": true,
@@ -73,6 +77,23 @@ export const OrdersList: FC<OrdersListProps> = ({ headerTitle = '', children }):
 
   // console.log(orders);
 
+  const dispatch = useDispatch();
+  const isConnected = useSelector(wsSelector.wsIsConnected);
+  const error = useSelector(wsSelector.wsError);
+  const feed = useSelector(wsSelector.wsData);
+
+  if (isConnected && feed !== null) {
+    console.log({ feed });
+  }
+
+  useEffect(
+    () => {
+     // if (user) {
+        dispatch(wsConnectionStart());
+     // }
+    },
+    []
+  );
   return (
     <div className={ordersListStyles.body}>
       {headerTitle && (
@@ -80,10 +101,7 @@ export const OrdersList: FC<OrdersListProps> = ({ headerTitle = '', children }):
           {headerTitle}
         </p>
       )}
-      <div className={ordersListStyles.container}>
-        {children}
-      </div>
-
+      <div className={ordersListStyles.container}>{children}</div>
     </div>
   );
-}
+};
