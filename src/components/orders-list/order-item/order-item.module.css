@@ -2,7 +2,7 @@
   display:flex;
   flex-direction: column;
   padding: 24px;
-  background: #1C1C21;
+  background: var(--background);
   border-radius: 40px;
 }
 .order:hover {
@@ -32,9 +32,27 @@
 .price {
   padding-right: 8px;
 }
-.ingredientImage {
+.images {
+  display: flex;
+}
+
+.imageContainer {
+  position: relative;
   height: 64px;
   width: 64px;
-  border: 1px var(--colors-interface-accent);
+  border: 3px solid var(--colors-interface-accent);
   border-radius: 50%;
+  background: var(--background-alt);
+}
+.image {
+  height: 64px;
+  width: 64px;
+  object-fit: cover;
+  right: 10px;
+}
+
+.additionalCount {
+  position: relative;
+  right: -20px;
+  bottom: 48px;
 }

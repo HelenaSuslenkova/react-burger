@@ -22,7 +22,6 @@ import { INGREDIENT_DETAILS_TITLE } from '../utils/const';
 export const Routes = () => {
   const { state } = useLocation();
 
-  console.log(state);
   return (
     <ReactRouterDomRoutes>
       <Route path="/profile" element={<AuthenticatedLayout><UserDetailsPage /></AuthenticatedLayout>}>

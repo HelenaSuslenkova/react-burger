@@ -53,3 +53,14 @@ export const INGREDIENT_DETAILS_TITLES = {
   fat: 'Жиры,г',
   carbohydrates: 'Углеводы,г',
 }
+
+export enum ORDER_STATUS  {
+  done = 'done',
+  created = 'created',
+  pending = 'pending',
+}
+
+export enum ORDER_STATUS_TITLES {
+  done = 'Выполнен',
+  created = 'Готовится',
+}

@@ -32,6 +32,19 @@
   margin-bottom: 8px;
 }
 
-.prepared {
+.doneOrders {
+  display: flex;
   color: var(--colors-interface-success);
+}
+
+.done:first-of-type {
+  margin-right: 40px;
+}
+
+.preparingOrders {
+  display: flex;
+}
+
+.preparing:first-of-type {
+  margin-right: 40px;
 }

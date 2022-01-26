@@ -24,7 +24,7 @@ export const MenuIcon: FC<MenuIconProps> = ({ path }): JSX.Element => {
     } else if (path === generateRoutePath({name: RouteName.profile})) {
       setMenuIcon(<ProfileIcon type={iconProfileType}/>);
     }
-  }, [iconType])
+  }, [iconType, iconProfileType, path])
 
   return (
     <>

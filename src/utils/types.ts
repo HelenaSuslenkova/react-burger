@@ -58,18 +58,36 @@ export type RefreshTokenResponceType = UnauthorizationResponceType & {
   refreshToken: string,
 }
 
-type OrdersType = {
-  ingredients: Array<string>,
-  _id: string,
-  status: string,
-  number: number,
-  createdAt: string,
-  updatedAt: string,
-}
-
 export type OrdersListResponceType = {
   success: boolean,
-  orders: Array<OrdersType>,
+  orders: FeedOrders,
   total: number,
   totalToday: number,
 }
+
+export type FeedOrdersIngredients = {
+  ingredients: string[];
+};
+
+export type FeedOrders = OrderInfo & FeedOrdersIngredients;
+
+export type Feed = {
+  orders: FeedOrders[],
+  success: boolean,
+  total: number,
+  totalToday: number,
+}
+
+export type OrderInfo = {
+  createdAt: string;
+  name: string;
+  number: number;
+  status: string;
+  updatedAt: string;
+  _id: string;
+};
+
+export type OrderData = {
+  ingredients: BurgerIngredientType[];
+  orderData: OrderInfo;
+};

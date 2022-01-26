@@ -2,19 +2,25 @@ import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
-  WS_GET_MESSAGE
+  WS_GET_DATA,
 } from '../action-types/ws';
 import { TWSActions } from '../actions/ws';
+import { Feed } from '../../utils/types';
 
 type TWSState = {
   isConnected: boolean;
-  data: any;
+  data: Feed;
   error?: Event;
 }
 
 const initialState: TWSState = {
   isConnected: false,
-  data: [],
+  data: {
+    orders: [],
+    success: false,
+    total: 0,
+    totalToday: 0,
+  },
 };
 
 export const wsReducer = (state = initialState, action: TWSActions) : TWSState => {
@@ -35,13 +41,14 @@ export const wsReducer = (state = initialState, action: TWSActions) : TWSState =
       return {
         ...state,
         error: undefined,
-        isConnected: false
+        isConnected: false,
+        data: initialState.data,
       };
-    case WS_GET_MESSAGE:
+    case WS_GET_DATA:
       return {
         ...state,
         error: undefined,
-        data: [...state.data, action.payload]
+        data: action.payload,
       };
     default:
       return state;

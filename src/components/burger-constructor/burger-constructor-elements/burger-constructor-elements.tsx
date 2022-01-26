@@ -13,7 +13,7 @@ export const BurgerConstructorElements = (): JSX.Element => {
   const mainBun = useSelector(burgerConstructorElementsSelector.mainBun);
   const ingredients = useSelector(burgerConstructorElementsSelector.elements);
 
-  const isEmptyBurgerConstructor = mainBun && !Object.keys(mainBun).length && ingredients && !ingredients.length;
+  const isEmptyBurgerConstructor = !mainBun && ingredients && !ingredients.length;
   const isMainBun = mainBun && !!Object.keys(mainBun).length;
 
   const onDropHandler = (item: BurgerIngredientType) => {
