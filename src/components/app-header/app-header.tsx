@@ -40,7 +40,7 @@ export const AppHeader = (): JSX.Element => {
         <nav className={headerStyles.navigation__right}>
           <ul>
           {getHeaderMenuRoutes()[HEADER_MENU_TYPES.right].map(({path, label}, index) => (
-            <li key={index} className={`${headerStyles.navigation_item} ${headerStyles.navigation_item__active}`}>
+            <li key={index} className={`${headerStyles.navigation_item_left} ${headerStyles.navigation_item__active}`}>
               <MenuIcon path={path} />
               <span className={headerStyles.link_wrapper}>
                 <NavLink

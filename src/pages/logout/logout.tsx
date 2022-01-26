@@ -10,8 +10,8 @@ export const LogoutPage = (): JSX.Element | null => {
   const [isUserLogout, setIsUserLogout] = useState(false);
 
   const logout = async () => {
-    const response: any = await dispatch(unauthorization()); //check
-    (response?.success === true || response?.message === 'Token required') && setIsUserLogout(true);
+    await dispatch(unauthorization());
+    setIsUserLogout(true);
   }
   useEffect(() => {
     logout();

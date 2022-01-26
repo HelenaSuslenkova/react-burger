@@ -1,11 +1,3 @@
+import { OrderFeedDetails } from "../../components/order-feed-details/order-feed-details";
 
-import orderDetailsStyles from './order-details.module.css';
-
-
-export const OrderDetailsPage = (): JSX.Element => {
-  return (
-    <>
-    OrderDetailsPage
-    </>
-  );
-}
+export const OrderDetailsPage = (): JSX.Element => <OrderFeedDetails />;

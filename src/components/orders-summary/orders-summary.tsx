@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 import ordersSummaryStyles from "./orders-summary.module.css";
 import { useSelector } from "../../services/types/hooks";
 import { wsSelector } from "../../services/selectors/ws";

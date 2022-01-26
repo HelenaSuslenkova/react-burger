@@ -4,7 +4,6 @@ import {
   wsConnectionSuccess,
   wsConnectionError,
   wsGetMessage,
-  wsConnectionClosed,
 } from "../actions/ws";
 
 export const wsMiddleware = (wsUrl: string): Middleware => {

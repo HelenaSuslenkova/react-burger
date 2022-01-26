@@ -63,7 +63,7 @@ export const Modal: FC<ModalProps> = ({ isShow, closeModal, title, children, mod
     return() => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
     }
-  }, [])
+  }, [closeOnEscapeKey])
 
   return createPortal(
     (

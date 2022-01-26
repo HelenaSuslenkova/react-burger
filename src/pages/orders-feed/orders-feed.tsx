@@ -12,10 +12,11 @@ import { OrderData } from "../../utils/types";
 export const OrdersFeedPage = (): JSX.Element => {
   const orderListTitle = "Лента заказов";
   const dispatch = useDispatch();
-  const [ordersData, isNotOrdersEmpty] = useOrdersFeed();
+  const {ordersData, isNotOrdersEmpty} = useOrdersFeed();
 
   useEffect(() => {
     dispatch(wsConnectionStart(`/orders/all`));
+
     return () => {
       dispatch(wsConnectionClosed())
     }

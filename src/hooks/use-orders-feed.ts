@@ -4,23 +4,31 @@ import { wsSelector } from "../services/selectors/ws";
 import burgerIngredientsSelector from "../services/selectors/burger-ingredients";
 import {
   BurgerIngredientType,
-  OrderInfo,
   OrderData,
-  FeedOrders,
- //  FeedOrdersIngredients,
- } from "../utils/types";
- import { TABS_TYPES } from '../utils/const';
+} from "../utils/types";
+import { TABS_TYPES, ORDER_STATUS } from "../utils/const";
 
-function useOrdersFeed(): [ordersData: OrderData[], isNotOrdersEmpty: boolean] {
+function useOrdersFeed(
+  orderId?: string
+): {
+  ordersData: OrderData[],
+  isNotOrdersEmpty: boolean,
+  currentOrder: OrderData | null,
+  currentOrderPrice: number | undefined,
+  currentOrderDate: string | undefined,
+} {
   const { orders } = useSelector(wsSelector.wsData);
   const burgerIngredients = useSelector(burgerIngredientsSelector.data);
 
   const isNotOrdersEmpty = Boolean(orders?.length);
 
-  const hasBunId = (ingredients: BurgerIngredientType[], id: string) : boolean => (
-    Boolean(ingredients?.find((ingredient) =>
-      ingredient._id === id && ingredient.type === TABS_TYPES.bun),
-  ));
+  const hasBunId = (ingredients: BurgerIngredientType[], id: string): boolean =>
+    Boolean(
+      ingredients?.find(
+        (ingredient) =>
+          ingredient._id === id && ingredient.type === TABS_TYPES.bun
+      )
+    );
 
   const ordersData = useMemo(() => {
     return orders?.reduce(
@@ -45,7 +53,35 @@ function useOrdersFeed(): [ordersData: OrderData[], isNotOrdersEmpty: boolean] {
     );
   }, [burgerIngredients, orders]);
 
-   return [ordersData, isNotOrdersEmpty];
+  const currentOrder = useMemo(() => {
+    let current = null;
+    if (Boolean(ordersData.length) && orderId) {
+      current = ordersData.filter(
+        ({ orderData }) => orderData._id === orderId
+      )[0];
+    }
+    return current;
+  }, [ordersData, orderId]);
+
+  const currentOrderPrice = useMemo(() => {
+    return currentOrder?.ingredients?.reduce(
+      (sum, ingredient) =>
+        ingredient.type === TABS_TYPES.bun
+          ? sum + ingredient.price * 2
+          : sum + ingredient.price,
+      0
+    );
+  }, [currentOrder?.ingredients]);
+
+  const currentOrderDate = currentOrder?.orderData?.status === ORDER_STATUS.done ? currentOrder?.orderData?.updatedAt : currentOrder?.orderData?.createdAt;
+
+  return {
+    ordersData,
+    isNotOrdersEmpty,
+    currentOrder,
+    currentOrderPrice,
+    currentOrderDate,
+  };
 }
 
 export default useOrdersFeed;

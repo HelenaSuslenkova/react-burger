@@ -10,7 +10,6 @@ import {
   ResetPasswordPage,
   UserOrdersPage,
   OrderDetailsPage,
-  OrdersFeedPage,
 } from '../pages';
 import { Modal } from '../components/modals/modal/modal';
 import { IngredientDetails } from '../components/ingredient-details/ingredient-details';
@@ -49,8 +48,8 @@ export const Routes = () => {
       <Route path="/" element={<CommonLayout><MainPage/></CommonLayout>}>
         <Route path="ingredients/:id" element={<Modal modalType={MODAL_TYPES.modalIngredient} title={INGREDIENT_DETAILS_TITLE} children={<IngredientDetails />} />} />
       </Route>
-      <Route path="feed/:id" element={<Modal modalType={MODAL_TYPES.modalOrderFeed} title={'#034533'} children={<OrderFeedDetails />} />} />
-      <Route path="profile/orders/:id" element={<Modal modalType={MODAL_TYPES.modalOrderFeed} title={'#034533'} children={<OrderFeedDetails />} />} />
+      <Route path="feed/:id" element={<Modal modalType={MODAL_TYPES.modalOrderFeed} children={<OrderFeedDetails />} />} />
+      <Route path="profile/orders/:id" element={<Modal modalType={MODAL_TYPES.modalOrderFeed} children={<OrderFeedDetails />} />} />
     </ReactRouterDomRoutes>
   )
 }

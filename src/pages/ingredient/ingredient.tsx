@@ -1,7 +1,3 @@
 import { IngredientDetails } from "../../components/ingredient-details/ingredient-details";
 
-export const IngredientPage = (): JSX.Element => {
-  return (
-    <IngredientDetails />
-  );
-}
+export const IngredientPage = (): JSX.Element => <IngredientDetails />;
