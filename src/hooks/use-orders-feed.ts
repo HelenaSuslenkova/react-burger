@@ -15,7 +15,7 @@ function useOrdersFeed(
   isNotOrdersEmpty: boolean,
   currentOrder: OrderData | null,
   currentOrderPrice: number | undefined,
-  currentOrderDate: string | undefined,
+  formattedDate: string,
 } {
   const { orders } = useSelector(wsSelector.wsData);
   const burgerIngredients = useSelector(burgerIngredientsSelector.data);
@@ -75,12 +75,22 @@ function useOrdersFeed(
 
   const currentOrderDate = currentOrder?.orderData?.status === ORDER_STATUS.done ? currentOrder?.orderData?.updatedAt : currentOrder?.orderData?.createdAt;
 
+  const formattedDate: string = useMemo(() => {
+    let formattedDate = ''
+    if (currentOrderDate) {
+      const date =  new Date(currentOrderDate);
+      const month = date.toLocaleString("default", { month: "long" });
+      formattedDate = `${month}/${date.getUTCDate()}/${date.getUTCFullYear()} ${date.getUTCHours()}:${date.getUTCMinutes()}`;
+    }
+    return formattedDate;
+    }, [currentOrderDate]);
+
   return {
     ordersData,
     isNotOrdersEmpty,
     currentOrder,
     currentOrderPrice,
-    currentOrderDate,
+    formattedDate,
   };
 }
 

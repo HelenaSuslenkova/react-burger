@@ -19,7 +19,7 @@ export const OrderItem: FC<OrderItemProps> = ({ order }): JSX.Element => {
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { currentOrderPrice, currentOrderDate } = useOrdersFeed(_id);
+  const { currentOrderPrice, formattedDate } = useOrdersFeed(_id);
 
   return (
     <div
@@ -37,7 +37,7 @@ export const OrderItem: FC<OrderItemProps> = ({ order }): JSX.Element => {
       <div className={orderItemStyles.info}>
         <p className="text text_type_digits-default">{`#${number}`}</p>
         <p className="text text_type_main-default text_color_inactive">
-          {currentOrderDate}
+          {formattedDate}
         </p>
       </div>
       <div className={orderItemStyles.title}>

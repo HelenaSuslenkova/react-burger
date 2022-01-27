@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, useLocation } from "react-router-dom";
 
 import { useDispatch } from "../../services/types/hooks";
@@ -14,17 +14,15 @@ import { isAutenticated, getTokenHashString } from "../../services/auth/auth";
 
 export const OrderFeedDetails = (): JSX.Element => {
   const dispatch = useDispatch();
-  const {
-    state: { isModalOpen, path },
-  } = useLocation();
+  const { state, pathname } = useLocation();
   const { id: orderId } = useParams();
-  const { currentOrder, currentOrderPrice, currentOrderDate } =
+  const { currentOrder, currentOrderPrice, formattedDate } =
     useOrdersFeed(orderId);
 
   useEffect(() => {
-    if (path === "/feed") {
+    if (pathname === `/feed/${orderId}`) {
       dispatch(wsConnectionStart(`/orders/all`));
-    } else if (isAutenticated() && path === `/profile/orders`) {
+    } else if (isAutenticated() && pathname === `/profile/orders/${orderId}`) {
       const accessToken = getTokenHashString(
         localStorage.getItem("accessToken")
       );
@@ -35,18 +33,18 @@ export const OrderFeedDetails = (): JSX.Element => {
     return () => {
       dispatch(wsConnectionClosed());
     };
-  }, [dispatch, path]);
+  }, [dispatch, orderId, pathname]);
 
   return (
     <div
       className={`${orderFeedDetailsStyles.body} ${
-        !isModalOpen && orderFeedDetailsStyles.pageBody
+        !state?.isModalOpen && orderFeedDetailsStyles.pageBody
       }`}
     >
       <div className={orderFeedDetailsStyles.header}>
         <p
           className={`text text_type_digits-medium ${
-            !isModalOpen
+            !state?.isModalOpen
               ? orderFeedDetailsStyles.orderNumberPage
               : orderFeedDetailsStyles.orderNumber
           }`}
@@ -68,7 +66,7 @@ export const OrderFeedDetails = (): JSX.Element => {
         <p className="text text_type_main-medium">Состав:</p>
         <div
           className={`${orderFeedDetailsStyles.ingredients} ${
-            !isModalOpen && orderFeedDetailsStyles.pageIngredients
+            !state?.isModalOpen && orderFeedDetailsStyles.pageIngredients
           }`}
         >
           {currentOrder?.ingredients?.length &&
@@ -100,7 +98,7 @@ export const OrderFeedDetails = (): JSX.Element => {
       </div>
       <div className={orderFeedDetailsStyles.footer}>
         <p className="text text_type_main-default text_color_inactive">
-          {currentOrderDate}
+          {formattedDate}
         </p>
         <div className={orderFeedDetailsStyles.totalPrice}>
           <p

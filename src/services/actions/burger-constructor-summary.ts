@@ -38,14 +38,14 @@ export const errorOrderDetails = (error: string): IErrorOrderDetails => ({
   error
 });
 
-export const getOrderDetails: AppThunk = (ingredientIds: Array<string>) => (dispatch: AppDispatch) => {
+export const getOrderDetails: AppThunk = (ingredientIds: Array<string>, token: string) => (dispatch: AppDispatch) => {
   dispatch(requestOrderDetails());
 
   const body = {
     ingredients: ingredientIds,
   }
 
-  const URL = `${API_URL}/orders`;
+  const URL = `${API_URL}/orders?token=${token}`;
 
   fetch(URL, {
     method: 'POST',
