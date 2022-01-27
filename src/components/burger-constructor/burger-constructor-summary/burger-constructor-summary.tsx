@@ -10,7 +10,7 @@ import { OrderDetails } from '../../order-details/order-details';
 import { getOrderDetails } from '../../../services/actions/burger-constructor-summary';
 import burgerConstructorSummarySelector from '../../../services/selectors/burger-constructor-summary';
 import burgerConstructorElementsSelector from '../../../services/selectors/burger-constructor-elements';
-import { isAutenticated, getTokenHashString } from '../../../services/auth/auth';
+import { isAutenticated } from '../../../services/auth/auth';
 import { generateRoutePath, RouteName } from '../../../routes/helper';
 import { MODAL_TYPES } from '../../../utils/const';
 import { BurgerIngredientType } from '../../../utils/types';
@@ -28,10 +28,7 @@ export const BurgerConstructorSummary = (): JSX.Element => {
     if (!isAutenticated()) {
       navigate(generateRoutePath({name: RouteName.login}))
     } else {
-      const accessToken = getTokenHashString(
-        localStorage.getItem("accessToken")
-      );
-      dispatch(getOrderDetails(orderIngredientIds, accessToken));
+      dispatch(getOrderDetails(orderIngredientIds));
     }
   }
 
@@ -50,7 +47,7 @@ export const BurgerConstructorSummary = (): JSX.Element => {
     }, [ingredients, mainBun]);
 
   const isOrderSum = !isNaN(orderSum);
-  const isButtonDisabled = !Boolean(ingredients.length) || !Boolean(Object.keys(mainBun!).length);
+  const isButtonDisabled = !Boolean(ingredients?.length) || !mainBun;
 
   return (
     <>

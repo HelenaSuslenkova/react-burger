@@ -38,20 +38,21 @@ export const errorOrderDetails = (error: string): IErrorOrderDetails => ({
   error
 });
 
-export const getOrderDetails: AppThunk = (ingredientIds: Array<string>, token: string) => (dispatch: AppDispatch) => {
+export const getOrderDetails: AppThunk = (ingredientIds: Array<string>) => (dispatch: AppDispatch) => {
   dispatch(requestOrderDetails());
 
   const body = {
     ingredients: ingredientIds,
   }
 
-  const URL = `${API_URL}/orders?token=${token}`;
+  const URL = `${API_URL}/orders`;
 
   fetch(URL, {
     method: 'POST',
     body: JSON.stringify(body),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      'Authorization': `${localStorage.getItem('accessToken')}`,
     },
   })
     .then((response) => {
