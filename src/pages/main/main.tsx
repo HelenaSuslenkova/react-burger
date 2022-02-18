@@ -6,17 +6,15 @@ import { BurgerConstructor } from '../../components/burger-constructor/burger-co
 
 export const MainPage = (): JSX.Element => {
   return (
-    <>
-      <main className={mainStyles.container}>
-        <DndProvider backend={HTML5Backend}>
-          <section className={mainStyles.section}>
-            <BurgerIngredients />
-          </section>
-          <section className={mainStyles.section}>
-            <BurgerConstructor />
-          </section>
-        </DndProvider>
-      </main>
-    </>
+    <main className={mainStyles.container}>
+      <DndProvider backend={HTML5Backend}>
+        <section className={mainStyles.section}>
+          <BurgerIngredients />
+        </section>
+        <section className={mainStyles.section}>
+          <BurgerConstructor />
+        </section>
+      </DndProvider>
+    </main>
   );
 }

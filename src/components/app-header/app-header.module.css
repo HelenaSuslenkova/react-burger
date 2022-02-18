@@ -38,8 +38,15 @@
   list-style-type: none;
   display: flex;
 }
+.navigation_item_left {
+  composes: navigation_item;
+}
 
 .navigation_item > p {
+  margin-left: 8px;
+}
+
+.navigation_item_left > p{
   margin-left: 8px;
 }
 
@@ -47,7 +54,7 @@
   color: #ffffff;
 }
 
-.navigation_item:not(.navigation_item__last) {
+.navigation_item:not(:last-of-type) {
   margin-right: 50px;
 }
 

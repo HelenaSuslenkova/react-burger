@@ -13,6 +13,13 @@ export interface BurgerIngredientType {
   image_large: string,
   __v: number,
 }
+export type OrderDetailsType = {
+  name: string,
+  order: {
+    number: number,
+  }
+  success: boolean,
+};
 export type ForgotPasswordRequestType = {
   email: string,
 }
@@ -50,3 +57,37 @@ export type RefreshTokenResponceType = UnauthorizationResponceType & {
   accessToken: string,
   refreshToken: string,
 }
+
+export type OrdersListResponceType = {
+  success: boolean,
+  orders: FeedOrders,
+  total: number,
+  totalToday: number,
+}
+
+export type FeedOrdersIngredients = {
+  ingredients: string[];
+};
+
+export type FeedOrders = OrderInfo & FeedOrdersIngredients;
+
+export type Feed = {
+  orders: FeedOrders[],
+  success: boolean,
+  total: number,
+  totalToday: number,
+}
+
+export type OrderInfo = {
+  createdAt: string;
+  name: string;
+  number: number;
+  status: string;
+  updatedAt: string;
+  _id: string;
+};
+
+export type OrderData = {
+  ingredients: BurgerIngredientType[];
+  orderData: OrderInfo;
+};

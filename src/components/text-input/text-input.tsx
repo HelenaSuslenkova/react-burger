@@ -3,7 +3,7 @@ import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 
 type TextInputProps = {
   placeholder: string,
-  icon: any;
+  icon: any,
   name: string;
   onChange(e: React.ChangeEvent<HTMLInputElement>): void;
   value: string;

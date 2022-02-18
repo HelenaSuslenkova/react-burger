@@ -1,10 +1,13 @@
-const isTokenExpired = () => {
+const isTokenExpired = () : boolean => {
   const accessToken = localStorage.getItem("accessToken");
+  let isExpired = true;
 
   if (accessToken) {
     const decodedJwtExp = parseJwtToken(accessToken);
-    return decodedJwtExp! * 1000 < Date.now();
+    isExpired =  decodedJwtExp! * 1000 < Date.now();
   }
+
+  return isExpired;
 };
 
 const parseJwtToken = (token: string) : number | undefined => {
@@ -15,6 +18,18 @@ const parseJwtToken = (token: string) : number | undefined => {
   }
 };
 
-export const isAutenticated = () => {
-  return localStorage.getItem('accessToken') && !isTokenExpired();
+export const isAutenticated = (): boolean => {
+  return Boolean(localStorage.getItem('accessToken')) && !isTokenExpired();
 };
+
+export const getTokenHashString = (accessToken: string | null): string => {
+  const accessTokenFromStorage  = localStorage.getItem("accessToken");
+  const cuttedStr = 'Bearer ';
+  let cuttedToken = ''
+
+  if (accessToken && accessTokenFromStorage && accessToken === accessTokenFromStorage && accessToken!.includes(cuttedStr)) {
+    cuttedToken = accessToken!.slice(cuttedStr.length);
+  }
+
+  return cuttedToken;
+}

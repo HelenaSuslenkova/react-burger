@@ -1,5 +1,5 @@
 import { useEffect, FC } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/types/hooks';
 import { Navigate, useLocation } from 'react-router-dom';
 import { retriableFetch } from '../../services/actions/user-details';
 import { generateRoutePath, RouteName } from '../../routes/helper';
@@ -19,7 +19,7 @@ export const AuthenticatedLayout: FC = ({ children }): JSX.Element => {
         'Authorization': `${localStorage.getItem('accessToken')}`,
       },
     }
-    await dispatch(retriableFetch(urlPath, options));
+    dispatch(retriableFetch(urlPath, options));
   };
 
   useEffect(() => {

@@ -8,6 +8,9 @@ import { Page404 } from './page404/page404';
 import { LogoutPage } from './logout/logout';
 import { UserProfilePage } from './user-profile/user-profile';
 import { IngredientPage } from './ingredient/ingredient';
+import { OrdersFeedPage } from './orders-feed/orders-feed';
+import { UserOrdersPage } from './user-orders/user-orders';
+import { OrderDetailsPage } from './order-details/order-details';
 
 export {
   LoginPage,
@@ -20,4 +23,7 @@ export {
   LogoutPage,
   UserProfilePage,
   IngredientPage,
+  OrdersFeedPage,
+  UserOrdersPage,
+  OrderDetailsPage,
 };

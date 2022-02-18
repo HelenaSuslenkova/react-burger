@@ -1,8 +1,10 @@
+import { RootState } from '../../services/types/store';
+
 export const burgerIngredientsSelector = {
-  data: (state: any) => state.burgerIngredients.data,
-  error: (state: any) => state.burgerIngredients.error,
-  burgerIngredientsRequest: (state: any) => state.burgerIngredients.burgerIngredientsRequest,
-  burgerIngredientsError: (state: any) => state.burgerIngredients.burgerIngredientsError,
+  data: (state: RootState) => state.burgerIngredients.data,
+  error: (state: RootState) => state.burgerIngredients.error,
+  burgerIngredientsRequest: (state: RootState) => state.burgerIngredients.burgerIngredientsRequest,
+  burgerIngredientsError: (state: RootState) => state.burgerIngredients.burgerIngredientsError,
 }
 
 export default burgerIngredientsSelector;

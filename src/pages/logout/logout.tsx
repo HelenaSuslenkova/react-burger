@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/types/hooks';
 import { Navigate } from 'react-router-dom';
 import { unauthorization } from '../../services/actions/user-details';
 import { generateRoutePath, RouteName } from '../../routes/helper';
@@ -10,8 +10,8 @@ export const LogoutPage = (): JSX.Element | null => {
   const [isUserLogout, setIsUserLogout] = useState(false);
 
   const logout = async () => {
-    const response: any = await dispatch(unauthorization()); //check
-    (response?.success === true || response?.message === 'Token required') && setIsUserLogout(true);
+    await dispatch(unauthorization());
+    setIsUserLogout(true);
   }
   useEffect(() => {
     logout();

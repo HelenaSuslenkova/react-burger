@@ -11,7 +11,7 @@
 
 .header {
   display: flex;
-  margin: 40px 40px 0 40px;
+  margin: 40px 24px 0;
   justify-content: space-between;
   align-items: center;
 }
@@ -25,4 +25,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0 24px 24px;
 }

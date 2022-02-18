@@ -1,8 +1,8 @@
 import { useState, useEffect, FormEvent, ChangeEventHandler, SyntheticEvent } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../services/types/hooks';
 import userProfileStyles from './user-profile.module.css';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { userDetailsSelector } from '../../services/selectors/userDetails';
+import { userDetailsSelector } from '../../services/selectors/user-details';
 import { TextInput } from '../../components/text-input/text-input';
 import { retriableFetch } from '../../services/actions/user-details';
 

@@ -1,5 +1,5 @@
 import { useMemo, FC } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../../services/types/hooks';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDrag } from "react-dnd";
 import burgerIngredientStyles from './burger-ingredient.module.css';
@@ -25,7 +25,7 @@ export const BurgerIngredient: FC<BurgerIngredientProps> = ({ ingredient }): JSX
   const count = useMemo<number | null>(
     () => {
       const data = [...elements, mainBun];
-      const currentElements = data?.filter((element) => element._id === _id);
+      const currentElements = data?.filter((element) => element?._id === _id);
 
       return (type === TABS_TYPES.bun ? currentElements.length * 2 : currentElements.length) || null;
     }, [elements, mainBun, _id, type]);

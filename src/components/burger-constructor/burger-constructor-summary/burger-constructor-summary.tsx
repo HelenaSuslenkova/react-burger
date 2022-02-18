@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../../services/types/hooks';
 import { useNavigate } from 'react-router-dom';
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import burgerConstructorSummaryStyles from './burger-constructor-summary.module.css';
@@ -35,10 +35,10 @@ export const BurgerConstructorSummary = (): JSX.Element => {
   const orderSum = useMemo<number>(
     () => {
       const ingredientsSum = ingredients?.reduce((total: number, current: BurgerIngredientType) => total + current.price, 0)
-      return (Number(ingredientsSum) || 0) + (Number(mainBun?.price * 2) || 0);
+      return (Number(ingredientsSum) || 0) + (Number(mainBun && mainBun?.price * 2) || 0);
     }, [ingredients, mainBun]);
 
-  const orderIngredientIds = useMemo<Array<string>>(
+  const orderIngredientIds = useMemo<Array<string | undefined>>(
     () => {
       return [
         ...ingredients?.map((ingredient: BurgerIngredientType) => ingredient._id),
@@ -47,7 +47,7 @@ export const BurgerConstructorSummary = (): JSX.Element => {
     }, [ingredients, mainBun]);
 
   const isOrderSum = !isNaN(orderSum);
-  const isButtonDisabled = !Boolean(ingredients.length) || !Boolean(Object.keys(mainBun).length);
+  const isButtonDisabled = !Boolean(ingredients?.length) || !mainBun;
 
   return (
     <>

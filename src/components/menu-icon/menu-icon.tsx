@@ -13,18 +13,19 @@ export const MenuIcon: FC<MenuIconProps> = ({ path }): JSX.Element => {
 
   const iconType = matchExact ? 'primary' : 'secondary';
   const iconProfileType = matchNotExact ? 'primary' : 'secondary';
+  const iconListOrdersType = matchNotExact ? 'primary' : 'secondary';
 
   const [menuIcon, setMenuIcon] = useState<JSX.Element>();
 
   useEffect(() => {
     if (path === generateRoutePath({name: RouteName.main})) {
       setMenuIcon(<BurgerIcon type={iconType}/>);
-    } else if (path === generateRoutePath({name: RouteName.listOrders})) {
-      setMenuIcon(<ListIcon type={iconType}/>);
+    } else if (path === generateRoutePath({name: RouteName.ordersFeed})) {
+      setMenuIcon(<ListIcon type={iconListOrdersType}/>);
     } else if (path === generateRoutePath({name: RouteName.profile})) {
       setMenuIcon(<ProfileIcon type={iconProfileType}/>);
     }
-  }, [iconType])
+  }, [iconType, iconProfileType, path, iconListOrdersType])
 
   return (
     <>

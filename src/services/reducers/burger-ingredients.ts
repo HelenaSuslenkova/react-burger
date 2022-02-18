@@ -3,15 +3,24 @@ import {
   GET_BURGER_INGREDIENTS_SUCCESS,
   GET_BURGER_INGREDIENTS_ERROR,
 } from '../action-types/burger-ingredients';
+import { TBurgerIngredientsActions } from '../actions/burger-ingredients';
+import { BurgerIngredientType } from '../../utils/types';
 
-const initialState = {
+type TBurgerIngredientsState = {
+  data: Array<BurgerIngredientType>,
+  burgerIngredientsRequest: boolean,
+  burgerIngredientsError: boolean,
+  error: string | null,
+}
+
+const initialState: TBurgerIngredientsState= {
   data: [],
   burgerIngredientsRequest: false,
   burgerIngredientsError: false,
   error: null,
 };
 
-export const burgerIngredientsReducer = (state = initialState, action: any) => {
+export const burgerIngredientsReducer = (state = initialState, action: TBurgerIngredientsActions) : TBurgerIngredientsState => {
   switch(action.type) {
     case GET_BURGER_INGREDIENTS_REQUEST: {
       return {

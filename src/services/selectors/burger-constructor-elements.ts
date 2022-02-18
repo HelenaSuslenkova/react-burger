@@ -1,6 +1,8 @@
+import { RootState } from '../../services/types/store';
+
 export const burgerConstructorElementsSelector = {
-  mainBun: (state: any) => state.burgerConstructorElements.mainBun,
-  elements: (state: any) => state.burgerConstructorElements.elements,
+  mainBun: (state: RootState) => state.burgerConstructorElements.mainBun,
+  elements: (state: RootState) => state.burgerConstructorElements.elements,
 }
 
 export default burgerConstructorElementsSelector;

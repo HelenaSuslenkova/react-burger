@@ -9,11 +9,12 @@ import {
   ResetPasswordPage,
   Page404,
   LogoutPage,
+  OrdersFeedPage,
  } from '../pages';
 
 export enum RouteName  {
   profile = 'profile',
-  listOrders = 'listOrders',
+  ordersFeed = 'ordersFeed',
   login = 'login',
   logout = 'logout',
   main = 'main',
@@ -50,13 +51,13 @@ const routes: Record<RouteName, RouteConfig>  = {
     profileMenu: false,
     element: <MainPage/>
   },
-  [RouteName.listOrders]: {
+  [RouteName.ordersFeed]: {
     label: 'Лента заказов',
-    path: '/list-orders',
+    path: '/feed',
     type: routeTypes.common,
     headerMenu: 'left',
     profileMenu: false,
-    element: <>ListOrdersPage</>
+    element: <OrdersFeedPage/>
   },
   [RouteName.login]: {
     label: 'Login',

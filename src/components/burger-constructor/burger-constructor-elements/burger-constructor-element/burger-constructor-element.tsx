@@ -1,6 +1,6 @@
 import { useRef, useCallback, FC } from 'react';
 import { useDrag, useDrop } from "react-dnd";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../../../services/types/hooks';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import burgerConstructorElementStyles from './burger-constructor-element.module.css';
 import { BUN_POSITIONS, DRAGGABLE_TYPES } from '../../../../utils/const';

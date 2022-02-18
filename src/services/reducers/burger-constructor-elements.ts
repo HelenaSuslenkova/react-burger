@@ -6,14 +6,20 @@ import {
   DELETE_ALL_CONSTRUCTOR_ELEMENTS,
 } from '../action-types/burger-constructor-elements';
 import { BurgerIngredientType } from '../../utils/types';
+import { TBurgerConstructorElementsActions } from '../actions/burger-constructor-elements';
 
-const initialState = {
-  mainBun: {},
+type TBurgerConstructorElementsState = {
+  mainBun: BurgerIngredientType | null,
+  elements: Array<BurgerIngredientType>,
+}
+
+const initialState: TBurgerConstructorElementsState = {
+  mainBun: null,
   elements: [],
 };
 
-export const burgerConstructorElementsReducer = (state = initialState, action: any) => {
-  switch(action.type) {
+export const burgerConstructorElementsReducer = (state = initialState, action: TBurgerConstructorElementsActions): TBurgerConstructorElementsState => {
+  switch (action.type) {
     case SET_BURGER_MAIN_BUN: {
       return {
         ...state,
@@ -42,7 +48,7 @@ export const burgerConstructorElementsReducer = (state = initialState, action: a
         elements: [
           ...sortElements(state.elements, action.payload.hoverIndex, action.payload.dragIndex),
         ],
-        }
+      }
     }
     case DELETE_ALL_CONSTRUCTOR_ELEMENTS: {
       return {

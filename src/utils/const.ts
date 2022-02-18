@@ -32,6 +32,7 @@ export enum PROFILE_MENU_TYPES {
 export enum MODAL_TYPES {
   modalOrder = 'modal-order',
   modalIngredient = 'modal-ingredient',
+  modalOrderFeed = 'modal-order-feed',
 }
 
 export const DEFAULT_MESSAGE_TITLE = 'Тут пока пусто :(';
@@ -51,4 +52,15 @@ export const INGREDIENT_DETAILS_TITLES = {
   proteins: 'Белки,г',
   fat: 'Жиры,г',
   carbohydrates: 'Углеводы,г',
+}
+
+export enum ORDER_STATUS  {
+  done = 'done',
+  created = 'created',
+  pending = 'pending',
+}
+
+export enum ORDER_STATUS_TITLES {
+  done = 'Выполнен',
+  created = 'Готовится',
 }

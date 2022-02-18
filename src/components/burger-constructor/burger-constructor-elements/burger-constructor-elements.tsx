@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../../services/types/hooks';
 import { useDrop } from "react-dnd";
 import { BurgerConstructorElement } from './burger-constructor-element/burger-constructor-element';
 import burgerConstructorElementsStyles from './burger-constructor-elements.module.css';
@@ -13,7 +13,7 @@ export const BurgerConstructorElements = (): JSX.Element => {
   const mainBun = useSelector(burgerConstructorElementsSelector.mainBun);
   const ingredients = useSelector(burgerConstructorElementsSelector.elements);
 
-  const isEmptyBurgerConstructor = mainBun && !Object.keys(mainBun).length && ingredients && !ingredients.length;
+  const isEmptyBurgerConstructor = !mainBun && ingredients && !ingredients.length;
   const isMainBun = mainBun && !!Object.keys(mainBun).length;
 
   const onDropHandler = (item: BurgerIngredientType) => {
