@@ -22,8 +22,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test": "npm run test:jest",
+    "test:jest": "react-scripts test --verbose",
+    "test:coverage": "npm run test:jest -- --coverage",
+    "test:e2e": "npx cypress open",
+    "test:e2e-playwright": "npx playwright test ./playwright --headed"
   },
   "eslintConfig": {
     "extends": [
@@ -44,11 +48,27 @@
     ]
   },
   "devDependencies": {
+    "@playwright/test": "^1.17.2",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.27",
     "@types/react-dom": "^17.0.0",
+    "cypress": "^9.2.1",
+    "eslint-plugin-cypress": "^2.12.1",
+    "fetch-mock": "^9.11.0",
+    "react-test-renderer": "^17.0.2",
+    "redux-mock-store": "^1.5.4",
     "typescript": "^4.1.2",
     "typescript-plugin-css-modules": "^3.4.0"
+  },
+  "jest": {
+    "coverageReporters": [
+      "json",
+      "html",
+      "text"
+    ]
   }
 }
