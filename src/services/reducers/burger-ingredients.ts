@@ -6,7 +6,7 @@ import {
 import { TBurgerIngredientsActions } from '../actions/burger-ingredients';
 import { BurgerIngredientType } from '../../utils/types';
 
-type TBurgerIngredientsState = {
+export type TBurgerIngredientsState = {
   data: Array<BurgerIngredientType>,
   burgerIngredientsRequest: boolean,
   burgerIngredientsError: boolean,

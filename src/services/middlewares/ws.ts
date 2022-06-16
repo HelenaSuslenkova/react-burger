@@ -3,7 +3,7 @@ import { RootState, AppDispatch, TApplicationActions } from "../types/store";
 import {
   wsConnectionSuccess,
   wsConnectionError,
-  wsGetMessage,
+  wsGetData,
 } from "../actions/ws";
 import {
   WS_CONNECTION_START,
@@ -37,7 +37,7 @@ export const wsMiddleware = (wsUrl: string): Middleware => {
         };
         socket.onmessage = (event) => {
           const { data } = event;
-          dispatch(wsGetMessage(JSON.parse(data)));
+          dispatch(wsGetData(JSON.parse(data)));
         };
       }
       next(action);

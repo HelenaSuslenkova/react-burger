@@ -1,22 +1,22 @@
 import { API_URL } from "../../api/settings";
-import { BurgerIngredientType } from '../../utils/types';
+import { BurgerIngredientType } from "../../utils/types";
 import {
   GET_BURGER_INGREDIENTS_REQUEST,
   GET_BURGER_INGREDIENTS_SUCCESS,
   GET_BURGER_INGREDIENTS_ERROR,
-} from '../action-types/burger-ingredients';
-import { AppThunk, AppDispatch } from '../types/store'
+} from "../action-types/burger-ingredients";
+import { AppThunk, AppDispatch } from "../types/store";
 export interface IRequestBurgerIngredients {
   readonly type: typeof GET_BURGER_INGREDIENTS_REQUEST;
-};
+}
 export interface ISuccessBurgerIngredients {
   readonly type: typeof GET_BURGER_INGREDIENTS_SUCCESS;
   readonly payload: Array<BurgerIngredientType>;
-};
+}
 export interface IErrorBurgerIngredients {
   readonly type: typeof GET_BURGER_INGREDIENTS_ERROR;
   readonly error: string;
-};
+}
 
 export type TBurgerIngredientsActions =
   | IRequestBurgerIngredients
@@ -24,17 +24,21 @@ export type TBurgerIngredientsActions =
   | IErrorBurgerIngredients;
 
 export const requestBurgerIngredients = (): IRequestBurgerIngredients => ({
-  type: GET_BURGER_INGREDIENTS_REQUEST
+  type: GET_BURGER_INGREDIENTS_REQUEST,
 });
 
-export const successBurgerIngredients = (data: Array<BurgerIngredientType>): ISuccessBurgerIngredients => ({
+export const successBurgerIngredients = (
+  data: Array<BurgerIngredientType>
+): ISuccessBurgerIngredients => ({
   type: GET_BURGER_INGREDIENTS_SUCCESS,
   payload: data,
 });
 
-export const errorBurgerIngredients = (error: string): IErrorBurgerIngredients => ({
+export const errorBurgerIngredients = (
+  error: string
+): IErrorBurgerIngredients => ({
   type: GET_BURGER_INGREDIENTS_ERROR,
-  error
+  error,
 });
 
 export const getBurgerIngredients: AppThunk = () => (dispatch: AppDispatch) => {
@@ -47,7 +51,7 @@ export const getBurgerIngredients: AppThunk = () => (dispatch: AppDispatch) => {
         dispatch(errorBurgerIngredients(`Response status: ${response.status}`));
       }
 
-      return response.json()
+      return response.json();
     })
     .then(({ data }) => {
       dispatch(successBurgerIngredients(data));

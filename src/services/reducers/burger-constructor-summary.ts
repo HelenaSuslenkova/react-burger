@@ -6,7 +6,7 @@ import {
 import { TBurgerConstructorSummaryActions } from '../actions/burger-constructor-summary';
 import { OrderDetailsType } from '../../utils/types';
 
-type TBurgerConstructorSummaryState = {
+export type TBurgerConstructorSummaryState = {
   orderDetails: {
     data: OrderDetailsType,
     orderDetailsRequest: boolean,
@@ -15,7 +15,7 @@ type TBurgerConstructorSummaryState = {
   }
 }
 
-const initialState: TBurgerConstructorSummaryState = {
+export const initialState: TBurgerConstructorSummaryState = {
   orderDetails: {
     data: {
       name: '',

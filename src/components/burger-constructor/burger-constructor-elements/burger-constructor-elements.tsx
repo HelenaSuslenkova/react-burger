@@ -18,7 +18,15 @@ export const BurgerConstructorElements = (): JSX.Element => {
 
   const onDropHandler = (item: BurgerIngredientType) => {
     const isItemBun = item.type === TABS_TYPES.bun;
-    isItemBun ? dispatch(setBurgerMainBun(item)) : dispatch(setBurgerElements(item));
+    if (isItemBun) {
+      dispatch(setBurgerMainBun(item));
+    } else {
+      const data = {
+        ...item,
+        id: Math.random().toString(36),
+      }
+      dispatch(setBurgerElements(data));
+    }
   };
 
   const [, burgerElementRef] = useDrop({

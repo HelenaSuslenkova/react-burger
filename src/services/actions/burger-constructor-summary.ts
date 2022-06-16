@@ -47,7 +47,7 @@ export const getOrderDetails: AppThunk = (ingredientIds: Array<string>) => (disp
 
   const URL = `${API_URL}/orders`;
 
-  fetch(URL, {
+  return fetch(URL, {
     method: 'POST',
     body: JSON.stringify(body),
     headers: {

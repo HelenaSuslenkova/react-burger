@@ -53,7 +53,7 @@ export const wsConnectionClosed = (): IWSConnectionClosed => ({
   type: WS_CONNECTION_CLOSED,
 });
 
-export const wsGetMessage = (payload: Feed): IWSGetMessage => ({
+export const wsGetData = (payload: Feed): IWSGetMessage => ({
   type: WS_GET_DATA,
   payload,
 });

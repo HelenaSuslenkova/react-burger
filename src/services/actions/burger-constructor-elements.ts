@@ -11,13 +11,15 @@ export type UpdateBurgerElementsData = {
   dragIndex: number,
   hoverIndex: number,
 }
+
+export type BurgerIngredientTypeData = BurgerIngredientType & {id: string}
 export interface ISetBurgerMainBun {
   readonly type: typeof SET_BURGER_MAIN_BUN;
   readonly payload: BurgerIngredientType;
 }
 export interface ISetBurgerElements {
   readonly type: typeof SET_BURGER_ELEMENTS;
-  readonly payload: BurgerIngredientType & {id: string};
+  readonly payload: BurgerIngredientTypeData;
 }
 export interface IUpdateBurgerElements {
   readonly type: typeof UPDATE_BURGER_ELEMENTS;
@@ -43,15 +45,10 @@ export const setBurgerMainBun = (data: BurgerIngredientType) : ISetBurgerMainBun
   payload: data,
 });
 
-export const setBurgerElements = (data: BurgerIngredientType) : ISetBurgerElements => {
-  const payload = {
-    ...data,
-    id: Math.random().toString(36),
-  }
-
+export const setBurgerElements = (data: BurgerIngredientTypeData) : ISetBurgerElements => {
   return {
     type: SET_BURGER_ELEMENTS,
-    payload,
+    payload: data
   }
 }
 
